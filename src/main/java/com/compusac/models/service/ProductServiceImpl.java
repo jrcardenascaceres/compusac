@@ -3,38 +3,38 @@ package com.compusac.models.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.compusac.models.entity.Producto;
-import com.compusac.models.repository.IProductoRepository;
+import com.compusac.models.entity.Product;
+import com.compusac.models.repository.IProductRepository;
 
 @Service
-public class ProductServiceImpl implements IProductoService {
+public class ProductServiceImpl implements IProductService {
 
 	@Autowired
-	IProductoRepository productoRepository;
+	IProductRepository productoRepository;
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Producto> findAll() {
-		return (List<Producto>) productoRepository.findAll();
+	public List<Product> findAll() {
+		return (List<Product>) productoRepository.findAll();
 	}
 
 	@Override
-	public Producto findById(Long id) {
-		return productoRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+	public Product findById(Long id) throws NotFoundException {
+		return productoRepository.findById(id).orElseThrow(NotFoundException::new);
 	}
 
 	@Override
-	public Producto create(Producto producto) {
-		return productoRepository.save(producto);
+	public Product create(Product product) {
+		return productoRepository.save(product);
 	}
 
 	@Override
-	public Producto update(Producto producto, Long id) {
-		return productoRepository.save(producto);
+	public Product update(Product product, Long id) {
+		return productoRepository.save(product);
 	}
 
 	@Override

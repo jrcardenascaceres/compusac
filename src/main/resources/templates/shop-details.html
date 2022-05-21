@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Productos</title>
+</head>
+
+<body>
+	<div th:switch="${producto}">
+		<h1>Producto</h1>
+		<div th:case="*">
+			<p th:text="${producto.name}">
+		</div>
+	</div>
+	<div th:with="existDetail = ${!productDetails.empty}">
+		<div th:if="${existDetail}">
+			<h1>Detalle</h1>
+			<tr th:each="detalle : ${productDetails}">
+				<td><img src="${detalle.image}"></td>
+			</tr>
+		</div>
+		<div th:unless="${existDetail}">
+			<div>No hay detalles</div>
+		</div>
+	</div>
+</body>
+
+</html>

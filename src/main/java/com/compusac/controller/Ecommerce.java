@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Ecommerce {
 
-    @RequestMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("nombre", "Juan");
-        return "index";
-    }
+	@RequestMapping("/index")
+	public String index(Model model) {
+		model.addAttribute("nombre", "Juan");
+		return "index";
+	}
 }
