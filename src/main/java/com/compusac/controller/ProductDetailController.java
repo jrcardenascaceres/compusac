@@ -24,7 +24,7 @@ public class ProductDetailController {
 	@Autowired
 	IProductService productoService;
 
-	@GetMapping(value = "/product-details/{productId}")
+	@GetMapping(value = "/shop-details/{productId}")
 	public String getContactById(Model model, @PathVariable String productId) throws NotFoundException {
 		model.addAttribute("status", false);
 		try {
