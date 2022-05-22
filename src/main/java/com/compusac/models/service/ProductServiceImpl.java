@@ -41,9 +41,4 @@ public class ProductServiceImpl implements IProductService {
 	public void delete(Long id) {
 		productoRepository.deleteById(id);
 	}
-/*
-	@Override
-	public List<Product> findProductName(String nombre) {
-		return (List<Product>) productoRepository.findProductName(nombre);
-	}*/
 }

@@ -19,6 +19,5 @@ public interface IProductService {
 
 	public void delete(Long id);
 	
-	//public List<Product> findProductName(String nombre);
 
 }
