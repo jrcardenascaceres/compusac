@@ -116,12 +116,6 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
-                        <div class="shop__sidebar__search">
-                            <!--<form th:action"@{/productos/buscar/{name}(id=${user.name})}" th:object="${user}" method="post">
-                                <input type="text" th:field="*{name}" id="name" placeholder="Buscar...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>-->
-                        </div>
                         <div class="shop__sidebar__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
@@ -133,7 +127,7 @@
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll" >
                                                 	  <li th:each="categoria : ${categoria}">
-                                                	  	<a  th:href="@{'/productos/detalle/'+${categoria.id}}" th:text="${categoria.name}"></a>
+                                                	  	<a  th:href="@{'/productos/findID/'+${categoria.id}}" th:text="${categoria.name}"></a>
                                                 	  </li>
                                                 </ul> 
                                             </div>
