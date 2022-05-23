@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
-import com.compusac.models.entity.Sales;
+import com.compusac.models.entity.Sale;
 
 public interface ISalesService {
 	
-	public List<Sales> findAll();
+	public List<Sale> findAll();
 
-	public Sales findById(Long id) throws NotFoundException;
+	public Sale findById(Long id) throws NotFoundException;
 
-	public Sales create(Sales sale);
+	public Sale create(Sale sale);
 
-	public Sales update(Sales sale, Long id);
+	public Sale update(Sale sale, Long id);
 
 	public void delete(Long id);
 

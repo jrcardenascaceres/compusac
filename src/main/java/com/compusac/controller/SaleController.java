@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.compusac.models.entity.Sales;
+import com.compusac.models.entity.Sale;
 import com.compusac.models.service.IProductService;
 import com.compusac.models.service.ISalesService;
 
@@ -46,12 +46,12 @@ public class SaleController {
 	}
 
 	@PostMapping("/addVenta")
-	public String addVenta(@Validated Sales sales, BindingResult result, Model model) {
+	public String addVenta(@Validated Sale sale, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "registrar-producto";
 		}
 
-		salesService.create(sales);
+		salesService.create(sale);
 		return "redirect:/sales";
 	}
 	

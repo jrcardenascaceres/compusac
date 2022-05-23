@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.compusac.models.entity.Product;
-import com.compusac.models.entity.Sales;
+import com.compusac.models.entity.Sale;
 import com.compusac.models.repository.ISalesRepository;
 
 @Service
@@ -19,25 +19,25 @@ public class SalesService implements ISalesService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Sales> findAll() {
+	public List<Sale> findAll() {
 		// TODO Auto-generated method stub
-		return (List<Sales>) salesRepository.findAll();
+		return (List<Sale>) salesRepository.findAll();
 	}
 
 	@Override
-	public Sales findById(Long id) throws NotFoundException {
+	public Sale findById(Long id) throws NotFoundException {
 		// TODO Auto-generated method stub
 		return salesRepository.findById(id).orElseThrow(NotFoundException::new);
 	}
 
 	@Override
-	public Sales create(Sales sale) {
+	public Sale create(Sale sale) {
 		// TODO Auto-generated method stub
 		return salesRepository.save(sale);
 	}
 
 	@Override
-	public Sales update(Sales sale, Long id) {
+	public Sale update(Sale sale, Long id) {
 		// TODO Auto-generated method stub
 		return salesRepository.save(sale);
 	}

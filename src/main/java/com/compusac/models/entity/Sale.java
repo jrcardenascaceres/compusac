@@ -2,9 +2,11 @@ package com.compusac.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity()
-public class Sales {
+@Table(name = "sales")
+public class Sale {
 	private Long id;
 	private Long product;
 	@Column(name = "unit_price")
