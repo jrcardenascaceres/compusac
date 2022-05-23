@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+</head>
+<body>
+    <div th:switch="${productos}">
+    <h2 th:case="null">No productos yet!</h2>
+        <div th:case="*">
+            <h2>Productos</h2>
+            <table>
+                <thead>
+                    <tr>
+                    	<th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="Correo"></td>
+                    <td><a th:href="@{productos/edit/{id}(id=${producto.id})}">Edit</a></td>
+                    <td><a th:href="@{productos/delete/{id}(id=${producto.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/signup">Add a new user</a></p>
+</div>
+</body>
+</html>
