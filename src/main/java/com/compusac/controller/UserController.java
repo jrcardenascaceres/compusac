@@ -17,6 +17,7 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
+	@Autowired
 	private IPersonService personService;
 	
 	@GetMapping("/registro")
@@ -30,6 +31,7 @@ public class UserController {
 		Long idPersona =  personService.guardar(person).getId();
 		
 		user.setPerson(idPersona);
+		
 		user.setUserName(person.getEmail());
 		userService.guardar(user);
 		
