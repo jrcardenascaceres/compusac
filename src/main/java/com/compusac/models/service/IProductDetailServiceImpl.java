@@ -44,4 +44,10 @@ public class IProductDetailServiceImpl implements IProductDetailService {
 	public List<ProductDetail> findProductDetailsByProduct(int id) {
 		return detailRepository.findProductDetailsByProduct(id);
 	}
+
+	@Override
+	public List<ProductDetail> findProductDetailsByCategory(int category, int idProduct) {
+		//return detailRepository.findByProductAndId(category, idProduct);
+		return null;
+	}
 }

@@ -17,4 +17,6 @@ public interface IProductDetailService {
 	public void delete(Long id);
 
 	public List<ProductDetail> findProductDetailsByProduct(int id);
+	
+	public List<ProductDetail> findProductDetailsByCategory(int category, int idProduct);
 }

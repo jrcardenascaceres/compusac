@@ -30,6 +30,7 @@ public class ProductDetailController {
 		try {
 			Product product = productoService.findById(Long.parseLong(productId));
 			model.addAttribute("producto", product);
+			model.addAttribute("productosrel", detailService.findProductDetailsByCategory(product.getCategory(), Integer.parseInt(productId)));
 
 			List<ProductDetail> productDetails = new ArrayList<ProductDetail>();
 			productDetails.addAll(detailService.findProductDetailsByProduct(Integer.parseInt(productId)));
