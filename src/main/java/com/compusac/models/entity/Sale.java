@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,9 @@ public class Sale {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int product;
+	@OneToOne
+	@JoinColumn(name = "product")
+	private Product product;
 	@Column(name = "unit_price")
 	private double unitPrice;
 	private Integer quantity;
@@ -30,11 +34,11 @@ public class Sale {
 		this.id = id;
 	}
 
-	public int getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(int product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
