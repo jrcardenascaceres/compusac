@@ -39,12 +39,15 @@ public class ProductController {
 		model.addAttribute("productos", productoService.findAll());
 		
 		List<String> products = (List<String>) session.getAttribute("product_list");
+		
+		
 		if (products != null) {
 			model.addAttribute("cart", products.size());
-		}
+		} 
 		
 		return "shop";
 	}
+	
 	
 	@GetMapping(value = "shop/categoria/{id}")
 	public String getById(@PathVariable("id") int id, Model model, HttpSession session) {
@@ -67,21 +70,16 @@ public class ProductController {
 	public String registrarProduct(@PathVariable("id") int id, HttpServletRequest request, Model model) {
 		
         List<String> products = (List<String>) request.getSession().getAttribute("product_list");
-        
-        if (products == null) {
-        	products = new ArrayList<>();
-            request.getSession().setAttribute("product_list", products);
-        } 
+
         String idString = String.valueOf(id);
         Boolean data = products.contains(idString);
-        
-        
-        //if (data) {
-        	
+       
+        if (!data) {
              products.add(idString);
              request.getSession().setAttribute("product_list", products);
-             model.addAttribute("cart", products.size()); 
-        //}
+        }
+
+        model.addAttribute("cart", products.size()); 
         model.addAttribute("categoria", categoryService.findAll());
 		model.addAttribute("productos", productoService.findAll());
         
