@@ -72,7 +72,7 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Inicio</a></li>
+                            <li ><a href="./index.html">Inicio</a></li>
                             <li><a href="./productos.html">Productos</a></li>
                             <li><a href="./about.html">Nosotros</a></li>
                             <li><a href="./contact.html">Contacto</a></li>
@@ -120,17 +120,19 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
+                                    <th>Productos</th>
+                                    <th>Precio unitario</th>
+                                    <th>Cantidad</th>
                                     <th>Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="venta : ventas">
-                                   <td th:text="${venta.id}"></td>
+                                <tr th:each="venta : ${ventas}">
+                                   <td th:text="${venta.product.name}"></td>
+                                   <td th:text="${venta.unitPrice}"></td>
                        				<td th:text="${venta.quantity}"></td>
-                                    <td th:text="${venta.total}"></td>>
+                                    <td th:text="${venta.totalPrice}"></td>
                                     <td class="cart__close"><i class="fa fa-close"></i></td>
                                 </tr>
                                 
@@ -140,12 +142,12 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="#">Continue Shopping</a>
+                                <a href="productos">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn update__btn">
-                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                                <a href="shopping-cart"><i class="fa fa-spinner"></i> Update cart</a>
                             </div>
                         </div>
                     </div>
@@ -161,8 +163,8 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Subtotal <span th:text="${totalVenta}"></span></li>
+                            <li>Total <span th:text="${totalVenta}"></span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">Proceed to checkout</a>
                     </div>

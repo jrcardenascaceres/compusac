@@ -18,4 +18,8 @@ public interface ISalesService {
 
 	public void delete(Long id);
 
+	public List<Sale> findByUser(Integer user);
+
+	double total(Integer user);
+
 }
