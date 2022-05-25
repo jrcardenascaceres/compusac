@@ -515,11 +515,15 @@ ol {
 }
 
 .header__nav__option a span {
-	color: #0d0d0d;
-	font-size: 11px;
-	position: absolute;
-	left: 5px;
-	top: 8px;
+	color: #ffffff;
+    font-size: 11px;
+    position: absolute;
+    left: 5px;
+    top: 21px;
+    background: #01c2aa;
+    border-radius: 10px;
+    width: 1rem;
+    text-align: center;
 }
 
 .header__nav__option a:last-child {

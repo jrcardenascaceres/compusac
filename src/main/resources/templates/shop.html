@@ -12,16 +12,16 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+ <!-- Css Styles -->
+    <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/style.css" type="text/css">
 </head>
 
 <body>
@@ -48,9 +48,9 @@
             </div>
         </div>
         <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+            <a href="#" class="search-switch"><img src="/../img/icon/search.png" alt=""></a>
+            <a href="#"><img src="/../img/icon/heart.png" alt=""></a>
+            <a href="#"><img src="/../img/icon/cart.png" alt=""> <span>0</span></a>
             <div class="price">$0.00</div>
         </div>
         <div id="mobile-menu-wrap"></div>
@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt="" height="40"></a>
+                        <a href="./index.html"><img src="/../img/logo.png" alt="" height="40"></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -81,9 +81,9 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="img/icon/contact.png" alt=""></a>
-                        <a href="#"><img src="img/icon/cart.png" alt=""> </a>
+                        <a href="#" class="search-switch"><img src="/../img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="/../img/icon/contact.png" alt=""></a>
+                        <a href="#"><img src="/../img/icon/cart.png" alt=""> <span th:each="cart : ${cart}" th:text="${cart}"></span></a>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll" >
                                                 	  <li th:each="categoria : ${categoria}">
-                                                	  	<a  th:href="@{'/productos/findID/'+${categoria.id}}" th:text="${categoria.name}"></a>
+                                                	  	<a  th:href="@{'/shop/categoria/'+${categoria.id}}" th:text="${categoria.name}"></a>
                                                 	  </li>
                                                 </ul> 
                                             </div>
@@ -158,11 +158,11 @@
                         <div class="col-lg-4 col-md-6 col-sm-6" th:each="producto : ${productos}">
                             <div class="product__item"  >
                                 <a th:href="@{'/shop-details/'+${producto.id}}">
-                                    <div class="product__item__pic set-bg" data-setbg="img/product/pc_07.jpg"></div>
+                                    <div class="product__item__pic set-bg" data-setbg="/../img/product/pc_07.jpg"></div>
                                 </a>
                                 <div class="product__item__text">
                                     <h6 th:text="${producto.name}"></h6>
-                                    <a href="shopping-cart.html" class="add-cart">+ Agregar al carrito</a>
+                                    <a th:href="@{'/shop/save-product/'+${producto.id}}"  class="add-cart">+ Agregar al carrito</a>
                                     <div class="rating">
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
@@ -188,18 +188,6 @@
                        
                       
                        
-                    </div>
-                        
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <span>...</span>
-                                <a href="#">21</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -236,15 +224,15 @@
                 <div class="col-lg-3  col-md-3 col-sm-6">
                     <div class="footer__widget">
                         <h6>Redes sociales</h6>
-                        <span><img src="img/icon/facebook.png" > </span>
-                        <span><img src="img/icon/instagram.png" > </span>
+                        <span><img src="/../img/icon/facebook.png" > </span>
+                        <span><img src="/../img/icon/instagram.png" > </span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="footer__widget align-items-center">
                         <p></p>
                         <h6>Libro de reclamaciones</h6>
-                        <a href="#"><img src="img/icon/libro.png" alt=""> </a>
+                        <a href="#"><img src="/../img/icon/libro.png" alt=""> </a>
                     </div>
                 </div>
             </div>
@@ -275,17 +263,17 @@
     </div>
     <!-- Search End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+      <!-- Js Plugins -->
+    <script src="/../js/jquery-3.3.1.min.js"></script>
+    <script src="/../js/bootstrap.min.js"></script>
+    <script src="/../js/jquery.nice-select.min.js"></script>
+    <script src="/../js/jquery.nicescroll.min.js"></script>
+    <script src="/../js/jquery.magnific-popup.min.js"></script>
+    <script src="/../js/jquery.countdown.min.js"></script>
+    <script src="/../js/jquery.slicknav.js"></script>
+    <script src="/../js/mixitup.min.js"></script>
+    <script src="/../js/owl.carousel.min.js"></script>
+    <script src="/../js/main.js"></script>
 </body>
 
 </html>
