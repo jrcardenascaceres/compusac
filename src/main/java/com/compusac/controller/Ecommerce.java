@@ -1,17 +1,26 @@
 package com.compusac.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Slf4j
+import com.compusac.models.service.IOfferService;
+import com.compusac.models.service.IProductService;
+
 @Controller
 public class Ecommerce {
 
+	@Autowired
+	IProductService productoService;
+
+	@Autowired
+	IOfferService offerService;
+
 	@RequestMapping("/index")
 	public String index(Model model) {
-		model.addAttribute("nombre", "Juan");
+		model.addAttribute("productos", productoService.findAll());
+		model.addAttribute("ofertas", offerService.findAll());
 		return "index";
 	}
 }

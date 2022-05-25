@@ -49,11 +49,11 @@ public class ProductController {
 	}
 
 	@GetMapping("/findID/{id}")
-	public String getById(@PathVariable("id") Long id, Model model) {
+	public String getById(@PathVariable("id") int id, Model model) {
 		model.addAttribute("status", false);
 		try {
 			model.addAttribute("categoria", categoryService.findAll());
-			model.addAttribute("productos", productoService.findById(id));
+			model.addAttribute("productos", productoService.findByIdCategory(id));
 			model.addAttribute("status", true);
 		} catch (NotFoundException nfe) {
 			model.addAttribute("message", "No existe el producto en mención");
