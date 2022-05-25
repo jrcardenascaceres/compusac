@@ -16,7 +16,7 @@ import com.compusac.models.service.IProductService;
 import com.compusac.models.service.ISalesService;
 
 @Controller
-@RequestMapping("/compras")
+@RequestMapping("/shopping-cart")
 public class SaleController {
 	
 	@Autowired
@@ -59,9 +59,11 @@ public class SaleController {
 	@GetMapping("")
 	public String sales(Model model) {
 				
-		model.addAttribute("productos", productService.findAll());
+
 		model.addAttribute("ventas", salesService.findAll());
-		return "shop";
+		model.addAttribute("totalVenta", salesService.total(1));
+		
+		return "shopping-cart";
 	}
 
 }
