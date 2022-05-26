@@ -18,7 +18,7 @@ import com.compusac.models.service.IProductService;
 import com.compusac.models.service.ISalesService;
 
 @Controller
-@RequestMapping("/shopping-cart")
+@RequestMapping("/shopping-cart-c")
 public class SaleController {
 	
 	@Autowired

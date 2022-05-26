@@ -2,139 +2,141 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Compu SAC | Checkout</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Male_Fashion Template">
+	<meta name="keywords" content="Male_Fashion, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Compu SAC | Checkout</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+		rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="/../css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/style.css" type="text/css">
 </head>
 
 <body>
-    <div th:include="./header.html::header"></div>
+	<div th:include="./header.html::header"></div>
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>Shopping Cart</h4>
-                        <div class="breadcrumb__links">
-                            <a href="./index.html">Inicio</a>
-                            <a href="./shop.html">Tienda</a>
-                            <span>Shopping Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb__text">
+						<h4>Shopping Cart</h4>
+						<div class="breadcrumb__links">
+							<a href="./index.html">Inicio</a>
+							<a href="./shop.html">Tienda</a>
+							<span>Shopping Cart</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
 
-    <!-- Shopping Cart Section Begin -->
-    <section class="shopping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="shopping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Productos</th>
-                                    <th>Precio unitario</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="venta : ${ventas}">
-                                   <td th:text="${venta.product.name}"></td>
-                                   <td th:text="${venta.unitPrice}"></td>
-                       				<td th:text="${venta.quantity}"></td>
-                                    <td th:text="${venta.totalPrice}"></td>
-                                    <td class="cart__close"><a th:href="@{/shopping-cart/delete(id=${venta.id})}"><i class="fa fa-close"></i></a></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn">
-                                <a href="productos">Continue Shopping</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn update__btn">
-                                <a href="shopping-cart"><i class="fa fa-spinner"></i> Update cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="cart__discount">
-                        <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit">Apply</button>
-                        </form>
-                    </div>
-                    <div class="cart__total">
-                        <h6>Cart total</h6>
-                        <ul>
-                            <li>Subtotal <span th:text="${totalVenta}"></span></li>
-                            <li>Total <span th:text="${totalVenta}"></span></li>
-                        </ul>
-                        <a href="checkout.html" class="primary-btn">Proceed to checkout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Shopping Cart Section End -->
+	<!-- Shopping Cart Section Begin -->
+	<section class="shopping-cart spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="shopping__cart__table">
+						<table>
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Productos</th>
+									<th>Precio unitario</th>
+									<th>Cantidad</th>
+									<th>Total</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="detail, iterStat: ${cart}">
+									<td th:text="${iterStat.count}" />
+									<td th:text="${detail.nombre}"></td>
+									<td th:text="${detail.precio}"></td>
+									<td th:text="${detail.cantidad}"></td>
+									<td th:text="${detail.total}"></td>
+									<td class="cart__close"><a th:href="@{/shop/delete/cart/{id}(id=${detail.product.id})}"><i
+												class="fa fa-close"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="continue__btn">
+								<a href="productos">Continue Shopping</a>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="continue__btn update__btn">
+								<a href="shopping-cart"><i class="fa fa-spinner"></i> Update cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="cart__discount">
+						<h6>Discount codes</h6>
+						<form action="#">
+							<input type="text" placeholder="Coupon code">
+							<button type="submit">Apply</button>
+						</form>
+					</div>
+					<div class="cart__total">
+						<h6>Cart total</h6>
+						<ul>
+							<li>Subtotal <span th:text="${order.total}"></span></li>
+							<li>Total <span th:text="${order.total}"></span></li>
+						</ul>
+						<a href="/shop/checkout" class="primary-btn">Proceed to checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Shopping Cart Section End -->
 
-     <div class="footer" th:include="./footer.html::footer"></div>
+	<div class="footer" th:include="./footer.html::footer"></div>
 
 
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
+	<!-- Search Begin -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+	<!-- Js Plugins -->
+	<script src="/../js/jquery-3.3.1.min.js"></script>
+	<script src="/../js/bootstrap.min.js"></script>
+	<script src="/../js/jquery.nice-select.min.js"></script>
+	<script src="/../js/jquery.nicescroll.min.js"></script>
+	<script src="/../js/jquery.magnific-popup.min.js"></script>
+	<script src="/../js/jquery.countdown.min.js"></script>
+	<script src="/../js/jquery.slicknav.js"></script>
+	<script src="/../js/mixitup.min.js"></script>
+	<script src="/../js/owl.carousel.min.js"></script>
+	<script src="/../js/main.js"></script>
 </body>
 
 </html>
