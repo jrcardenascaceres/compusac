@@ -16,7 +16,7 @@ import com.compusac.models.service.IPersonService;
 import com.compusac.models.service.IUserService;
 
 @Controller
-@RequestMapping ("/usuario")
+//@RequestMapping ("")
 public class UserController {
 
 	@Autowired
@@ -26,12 +26,12 @@ public class UserController {
 	
 	//BCryptPasswordEncoder passEncode = new BCryptPasswordEncoder();
 	
-	@GetMapping("/registro")
+	@GetMapping("/usuario/registro")
 	public String create() {
 		return "register";
 	}
 	
-	@PostMapping ("/save")
+	@PostMapping ("/usuario/save")
 	public String save(Person person , Usuario user) {
 		
 		Long idPersona =  personService.guardar(person).getId();
@@ -46,13 +46,13 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/usuario/login")
 	public String login () {
 		
 		return "login";
 	}
 	
-	@GetMapping("/acceder")
+	@GetMapping("/usuario/acceder")
 	public String acceder(Usuario usuario , HttpSession session) {
 		
 		Optional<Usuario> user = userService.findByUserName(usuario.getUserName());
