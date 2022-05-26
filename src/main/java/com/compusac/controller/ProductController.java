@@ -32,12 +32,6 @@ public class ProductController {
 		model.addAttribute("categoria", categoryService.findAll());
 		model.addAttribute("productos", productoService.findAll());
 
-		int totCarr = 0;
-		if (session.getAttribute("cart") != null) {
-			totCarr = (int) session.getAttribute("cart");
-		}
-		model.addAttribute("cart", totCarr);
-
 		return "shop";
 	}
 
@@ -48,11 +42,6 @@ public class ProductController {
 			model.addAttribute("categoria", categoryService.findAll());
 			model.addAttribute("productos", productoService.findByIdCategory(id));
 			model.addAttribute("status", true);
-			int totCarr = 0;
-			if (session.getAttribute("cart") != null) {
-				totCarr = (int) session.getAttribute("cart");
-			}
-			model.addAttribute("cart", totCarr);
 		} catch (NotFoundException nfe) {
 			model.addAttribute("message", "No existe el producto en mención");
 		}
@@ -62,29 +51,13 @@ public class ProductController {
 	@GetMapping("/save-product/{id}")
 	public String registrarProduct(@PathVariable("id") Long idProducto, HttpServletRequest request, Model model)
 			throws NotFoundException {
-		/*
-		 * List<Product> products = new ArrayList(); if
-		 * (request.getSession().getAttribute("cart_products") != null) {
-		 * products.add((Product) request.getSession().getAttribute("cart_products")); }
-		 * products.add(productoService.findById(idProducto));
-		 * request.getSession().setAttribute("cart_products", products);
-		 */
 
 		List<String> products = (List<String>) request.getSession().getAttribute("product_list");
-
-		if (products == null) {
-			products = new ArrayList<>();
-			request.getSession().setAttribute("product_list", products);
-		}
 		String idString = String.valueOf(idProducto);
 		Boolean data = products.contains(idString);
-
-		// if (data) {
-
 		products.add(idString);
 		request.getSession().setAttribute("product_list", products);
-		model.addAttribute("cart", products.size());
-		// }
+		request.getSession().setAttribute("cart",  products.size());
 		model.addAttribute("categoria", categoryService.findAll());
 		model.addAttribute("productos", productoService.findAll());
 
