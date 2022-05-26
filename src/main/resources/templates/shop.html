@@ -98,7 +98,11 @@
                                 </a>
                                 <div class="product__item__text">
                                     <h6 th:text="${producto.name}"></h6>
-                                    <a th:href="@{'/shop/save-product/'+${producto.id}}"  class="add-cart">+ Agregar al carrito</a>
+                                    <form th:action="@{/shop/add-product-cart}" method="POST">
+                                    	<input type="hidden" th:value="${producto.id}" name="idProduct">
+                                    	<input type="hidden" value="1" name="cantidad">
+                                    	<button type="submit" class="add-cart">+ Agregar al carrito</button>
+                                    </form>
                                     <div class="rating">
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>

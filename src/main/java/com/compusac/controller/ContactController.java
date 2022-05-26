@@ -35,7 +35,7 @@ public class ContactController {
 	public String sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("message") String message) {
 		
 		try {
-			sendMailService.sendMail(mail, "compusac.peru@gmail.com", "Contacto del cliente:" + name, message);	
+			sendMailService.sendMail(mail, "compusac.peru@gmail.com", "Contacto del cliente:" + name, "Correo: mail\n\n" + message);	
 			return "redirect:/contact";
 		}
 		catch(Exception e) {

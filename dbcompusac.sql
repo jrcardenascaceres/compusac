@@ -230,3 +230,22 @@ LOCK TABLES `product_details` WRITE;
 /*!40000 ALTER TABLE `product_details` DISABLE KEYS */;
 /*!40000 ALTER TABLE `product_details` ENABLE KEYS */;
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `offers`;
+CREATE TABLE `offers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `banner` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `subtitle` varchar(100) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `product` int(11) NOT NULL,
+  `expirate` datetime NOT NULL,
+  `status` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `offers_fk` (`product`),
+  CONSTRAINT `offers_fk` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+LOCK TABLES `offers` WRITE;
+/*!40000 ALTER TABLE `offers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `offers` ENABLE KEYS */;
+UNLOCK TABLES;
