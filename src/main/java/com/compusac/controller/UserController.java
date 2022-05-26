@@ -59,13 +59,24 @@ public class UserController {
 
 		if (user.isPresent()) {
 			session.setAttribute("idusuario", user.get().getId());
-			Person p = personService.findById(user.get().getPerson());
-			session.setAttribute("name", p.getName());
+			Person p = personService.findById(user.get().getId());
+			session.setAttribute("userName", p.getName());
 		} else {
 			session.removeAttribute("idusuario");
-			session.removeAttribute("name");
+			session.removeAttribute("userName");
 		}
 
 		return "redirect:/index";
+	}
+	
+	@GetMapping("/usuario/logout")
+	public String logout(HttpSession session) {
+
+		
+		session.removeAttribute("idusuario");
+		session.removeAttribute("userName");
+	
+
+		return "login";
 	}
 }
