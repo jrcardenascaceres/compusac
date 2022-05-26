@@ -526,6 +526,24 @@ ol {
     text-align: center;
 }
 
+.header__nav__option .icon_exit img {
+    width: 30px;
+    height: 30px;
+}
+
+.header__nav__option a div span {
+    color: #000000;
+    font-size: 15px;
+    position: absolute;
+    left: 5px;
+    top: 28px;
+    border-radius: 10px;
+    width: 1rem;
+    text-align: center;
+    background: none;
+    font-weight: 600;
+}
+
 .header__nav__option a:last-child {
 	margin-right: 0;
 }
