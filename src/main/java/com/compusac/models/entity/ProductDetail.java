@@ -15,29 +15,13 @@ public class ProductDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int product;
+	// private int product;
 	private String description;
 	private String image;
 	private Boolean main;
-	/*@OneToOne
+	@OneToOne
 	@JoinColumn(name = "product")
-	private Product producto;
-
-	public Product getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Product producto) {
-		this.producto = producto;
-	}*/
-
-	public void setProduct(int product) {
-		this.product = product;
-	}
-	
-	public int getProduct() {
-		return product;
-	}
+	private Product product;
 
 	public Long getId() {
 		return id;
@@ -46,7 +30,6 @@ public class ProductDetail {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getDescription() {
 		return description;
@@ -70,5 +53,13 @@ public class ProductDetail {
 
 	public void setMain(Boolean main) {
 		this.main = main;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 }

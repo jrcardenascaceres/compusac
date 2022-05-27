@@ -2,6 +2,7 @@ package com.compusac.models.service;
 
 import java.util.List;
 
+import com.compusac.models.entity.Product;
 import com.compusac.models.entity.ProductDetail;
 
 public interface IProductDetailService {
@@ -16,7 +17,7 @@ public interface IProductDetailService {
 
 	public void delete(Long id);
 
-	public List<ProductDetail> findProductDetailsByProduct(int id);
+	public List<ProductDetail> findProductDetailsByProduct(Product product);
 	
 	public List<ProductDetail> findProductDetailsByCategory(int category, int idProduct);
 }

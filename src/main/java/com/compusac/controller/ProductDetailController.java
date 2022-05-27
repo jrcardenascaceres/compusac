@@ -34,7 +34,7 @@ public class ProductDetailController {
 					detailService.findProductDetailsByCategory(product.getCategory(), Integer.parseInt(productId)));
 
 			List<ProductDetail> productDetails = new ArrayList<ProductDetail>();
-			productDetails.addAll(detailService.findProductDetailsByProduct(Integer.parseInt(productId)));
+			productDetails.addAll(detailService.findProductDetailsByProduct(product));
 
 			model.addAttribute("productDetails", productDetails);
 			model.addAttribute("status", true);
