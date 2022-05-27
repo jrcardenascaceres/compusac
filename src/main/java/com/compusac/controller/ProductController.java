@@ -1,6 +1,7 @@
 package com.compusac.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
@@ -16,19 +17,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.compusac.models.entity.Order;
 import com.compusac.models.entity.OrderDetail;
+import com.compusac.models.entity.Person;
 import com.compusac.models.entity.Product;
+import com.compusac.models.entity.Usuario;
 import com.compusac.models.service.ICategorysService;
+import com.compusac.models.service.IOrderDetailService;
+import com.compusac.models.service.IOrderService;
+import com.compusac.models.service.IPersonService;
 import com.compusac.models.service.IProductService;
+import com.compusac.models.service.IUserService;
+import com.compusac.models.service.SendMailService;
 
 @Controller
 @RequestMapping("/shop")
 public class ProductController {
 
 	@Autowired
-	IProductService productoService;
+	private IProductService productoService;
 
 	@Autowired
-	ICategorysService categoryService;
+	private ICategorysService categoryService;
+
+	@Autowired
+	private IOrderService orderService;
+
+	@Autowired
+	private IOrderDetailService detailService;
+
+	@Autowired
+	private IUserService userService;
+
+	@Autowired
+	private SendMailService sendMailService;
+
+	@Autowired
+	private IPersonService personService;
 
 	List<OrderDetail> details = new ArrayList<>();
 	Order order = new Order();
@@ -55,7 +78,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/add-product-cart")
-	public String registrarProduct(@RequestParam Long idProduct, @RequestParam Long cantidad, Model model,
+	public String registrarProduct(@RequestParam Long idProduct, @RequestParam int cantidad, Model model,
 			HttpSession session) throws NotFoundException {
 		Product product = productoService.findById(idProduct);
 		if (!details.stream().anyMatch(p -> p.getProduct().getId() == product.getId())) {
@@ -112,5 +135,34 @@ public class ProductController {
 		model.addAttribute("cart", details);
 		model.addAttribute("order", order);
 		return "checkout";
+	}
+
+	@PostMapping("/buy")
+	public String comprar(HttpSession session) {
+		Date fechaCreacion = new Date();
+		order.setFechaCreacion(fechaCreacion);
+		order.setNumero(orderService.generarNumeroOrden());
+
+		Usuario usuario = userService.findById(Long.parseLong(session.getAttribute("idusuario").toString()));
+
+		order.setUsuario(usuario);
+		orderService.create(order);
+
+		// guardar detalles
+		for (OrderDetail dt : details) {
+			dt.setOrder(order);
+			detailService.create(dt);
+		}
+		Person p = personService.findById(usuario.getPerson());
+
+		sendMailService.sendMail("compusac.peru@gmail.com", p.getEmail(), "Compra éxitosa!",
+				"Hola " + p.getName() + ": Gracias por su compra, vuelva pronto");
+
+		// limpiar lista y orden
+		order = new Order();
+		details.clear();
+		session.removeAttribute("cart_products");
+		return "redirect:/index";
+
 	}
 }

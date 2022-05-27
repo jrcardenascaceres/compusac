@@ -1,184 +1,120 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Male_Fashion Template" />
+    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Compu SAC | Inicio</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+  </head>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__option">
-            <div class="offcanvas__links">
-                <a href="#">Registrarse</a>
-                <a href="#">Preguntas frecuentes</a>
-            </div>
-            <div class="offcanvas__top__hover">
-                <span>Usd <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                </ul>
-            </div>
-        </div>
-        <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p></p>
-        </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__logo">
-                        <a href="/index"><img src="img/logo.png" alt="" height="40"></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-
-                            <li class="active"><a href="/index">Inicio</a></li>
-                            <li><a href="/shop">Productos</a></li>
-                            <li><a href="/about">Nosotros</a></li>
-                            <li><a href="/contact">Contacto</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="/usuario/login"><img src="img/icon/contact.png" alt=""></a>
-                        <a href="/../shopping-cart"><img src="img/icon/cart.png" alt=""> </a>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
-        </div>
-    </header>
-    <!-- Header Section End -->
+  <body>
+    <div th:include="./header.html::header"></div>
 
     <!-- Hero Section Begin -->
     <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/banner/banner1.webp">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Nuevos Productos</h6>
-                                <h2>Tablets, Laptops y Desktops</h2>
-                                <p>Dale un vistazo a los equipos de tu preferencia</p>
-                                <a href="#" class="primary-btn">Comprar <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="hero__slider owl-carousel">
+        <div
+          class="hero__items set-bg"
+          th:each="oferta : ${ofertas}"
+          th:attr="data-setbg=${'/../img/hero/' + oferta.banner}"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="hero__text">
+                  <h6 th:text="${oferta.title}">Nuevos Productos</h6>
+                  <h2 th:text="${oferta.subtitle}">
+                    Tablets, Laptops y Desktops
+                  </h2>
+                  <p th:text="${oferta.description}">
+                    Dale un vistazo a los equipos de tu preferencia
+                  </p>
+                  <a
+                    th:href="@{'/shop-details/'+${oferta.product}}"
+                    class="primary-btn"
+                    >Comprar <span class="arrow_right"></span
+                  ></a>
+                  <div class="hero__social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="img/banner/banner2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Pre-venta</h6>
-                                <h2></h2>
-                                
-                                
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Hero Section End -->
 
     <!-- Banner Section Begin -->
     <section class="banner spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 offset-lg-4">
-                    <div class="banner__item">
-                        <div class="banner__item__pic">
-                            <img th:src="@{${'/img/product/' + producto_detalles[0].image}}" alt="">
-                        </div>
-                        <div class="banner__item__text">
-                            <h2>Version 2022</h2>
-                            <a th:href="@{'/shop-details/'+${productos[0].id}}">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="banner__item banner__item--middle">
-                        <div class="banner__item__pic">
-                            <img th:src="@{${'/img/product/' + producto_detalles[1].image}}" alt="">
-                        </div>
-                        <div class="banner__item__text">
-                            <h2>Promociones</h2>
-                            <a th:href="@{'/shop-details/'+${productos[1].id}}">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="banner__item banner__item--last">
-                        <div class="banner__item__pic">
-                            <img th:src="@{${'/img/product/' + producto_detalles[2].image}}" alt="">
-                        </div>
-                        <div class="banner__item__text">
-                            <h2>Periféricos</h2>
-                            <a th:href="@{'/shop-details/'+${productos[2].id}}">Comprar</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 offset-lg-4">
+            <div class="banner__item">
+              <div class="banner__item__pic">
+                <img
+                  th:src="@{${'/img/product/' + producto_detalles[0].image}}"
+                  alt=""
+                />
+              </div>
+              <div class="banner__item__text">
+                <h2>Version 2022</h2>
+                <a th:href="@{'/shop-details/'+${productos[0].id}}">Comprar</a>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="banner__item banner__item--middle">
+              <div class="banner__item__pic">
+                <img
+                  th:src="@{${'/img/product/' + producto_detalles[1].image}}"
+                  alt=""
+                />
+              </div>
+              <div class="banner__item__text">
+                <h2>Promociones</h2>
+                <a th:href="@{'/shop-details/'+${productos[1].id}}">Comprar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="banner__item banner__item--last">
+              <div class="banner__item__pic">
+                <img
+                  th:src="@{${'/img/product/' + producto_detalles[2].image}}"
+                  alt=""
+                />
+              </div>
+              <div class="banner__item__text">
+                <h2>Periféricos</h2>
+                <a th:href="@{'/shop-details/'+${productos[2].id}}">Comprar</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Banner Section End -->
 
@@ -597,71 +533,16 @@
     </section-->
     <!-- Latest Blog Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3  col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Mi Cuenta</h6>
-                        <ul>
-                            <li><a href="#">Registrate</a></li>
-                            <li><a href="#">Olvidaste tu clave?</a></li>
-                        </ul>
-                        
-                        
-                    </div>
-                </div>
-                <div class="col-lg-3  col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Servicio al cliente</h6>
-                        <ul>
-                            <li><a href="#">Centro de ayuda</a></li>
-                            <li><a href="#">Cambios y devoluciones</a></li>
-                            <li><a href="#">Políticas de privacidad</a></li>
-                            <li><a href="#">Términos legales de campañas</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3  col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Redes sociales</h6>
-                        <span><img src="img/icon/facebook.png" > </span>
-                        <span><img src="img/icon/instagram.png" > </span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="footer__widget align-items-center">
-                        <p></p>
-                        <h6>Libro de reclamaciones</h6>
-                        <a href="#"><img src="img/icon/libro.png" alt=""> </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="footer__copyright__text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright ©
-                            2022
-                            All rights reserved | Compusac
-                        </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+    <div class="footer" th:include="./footer.html::footer"></div>
 
     <!-- Search Begin -->
     <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+          <input type="text" id="search-input" placeholder="Search here....." />
+        </form>
+      </div>
     </div>
     <!-- Search End -->
 
@@ -676,6 +557,5 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

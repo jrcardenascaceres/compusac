@@ -20,21 +20,20 @@ import com.compusac.models.service.ISalesService;
 @Controller
 @RequestMapping("/shopping-cartc")
 public class SaleController {
-	
+
 	@Autowired
 	ISalesService salesService;
-	
+
 	@Autowired
 	IProductService productService;
-	
 
 	@GetMapping("/findID/{id}")
 	public String getById(@PathVariable("id") Long id, Model model) {
-		//model.addAttribute("status", false);
+		// model.addAttribute("status", false);
 		try {
 			model.addAttribute("productos", productService.findAll());
 			model.addAttribute("ventas", salesService.findById(id));
-			//model.addAttribute("status", true);
+			// model.addAttribute("status", true);
 		} catch (NotFoundException nfe) {
 			model.addAttribute("message", "No existe el producto en mención");
 		}
@@ -56,22 +55,20 @@ public class SaleController {
 		salesService.create(sale);
 		return "redirect:/sales";
 	}
-	
-	
+
 	@GetMapping("")
 	public String sales(Model model) {
-				
 
 		model.addAttribute("ventas", salesService.findAll());
 		model.addAttribute("totalVenta", salesService.total(1));
-		
+
 		return "shopping-cart";
 	}
-	
+
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam Long id) {
 		salesService.delete(id);
-		//model.addAttribute("status", true);
+		// model.addAttribute("status", true);
 
 		return "redirect:/shopping-cart";
 	}

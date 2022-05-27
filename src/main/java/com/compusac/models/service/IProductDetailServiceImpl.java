@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.compusac.models.entity.Product;
 import com.compusac.models.entity.ProductDetail;
 import com.compusac.models.repository.IProductDetailRepository;
 
@@ -41,8 +42,8 @@ public class IProductDetailServiceImpl implements IProductDetailService {
 	}
 
 	@Override
-	public List<ProductDetail> findProductDetailsByProduct(int id) {
-		return detailRepository.findProductDetailsByProduct(id);
+	public List<ProductDetail> findProductDetailsByProduct(Product product) {
+		return detailRepository.findProductDetailsByProduct(product);
 	}
 
 	@Override
