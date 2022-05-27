@@ -8,28 +8,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SendMailService {
-	
+
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
 	public void sendMail(String from, String to, String subject, String body) {
-		
+
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
-		
+
 		mailMessage.setFrom(from);
 		mailMessage.setTo(to);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(body);
-		
-		
+
 		try {
-			javaMailSender.send(mailMessage);		
-		}
-		catch(Exception e) {
+			javaMailSender.send(mailMessage);
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		//javaMailSender.send(mailMessage);
+		// javaMailSender.send(mailMessage);
 	}
 
 }

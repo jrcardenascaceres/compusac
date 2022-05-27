@@ -20,6 +20,7 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
+
 	@Autowired
 	private IPersonService personService;
 
@@ -45,19 +46,19 @@ public class UserController {
 
 	@GetMapping("/usuario/login")
 	public String login() {
-
 		return "login";
 	}
 
 	@GetMapping("/usuario/acceder")
 	public String acceder(Usuario usuario, HttpSession session) {
-
 		Optional<Usuario> user = userService.findByUserName(usuario.getUserName());
-
 		if (user.isPresent()) {
 			session.setAttribute("idusuario", user.get().getId());
-			Person p = personService.findById(user.get().getId());
+			Person p = personService.findById(user.get().getPerson());
 			session.setAttribute("userName", p.getName());
+			session.setAttribute("lastName", p.getLastName());
+			session.setAttribute("email", p.getEmail());
+			session.setAttribute("telephone", p.getTelephone());
 		} else {
 			session.removeAttribute("idusuario");
 			session.removeAttribute("userName");

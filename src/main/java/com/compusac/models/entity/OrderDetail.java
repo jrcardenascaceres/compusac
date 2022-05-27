@@ -10,12 +10,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "order_details")
 public class OrderDetail {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private double cantidad;
+	private int cantidad;
 	private double precio;
 	private double total;
 
@@ -41,11 +41,11 @@ public class OrderDetail {
 		this.nombre = nombre;
 	}
 
-	public double getCantidad() {
+	public int getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(double cantidad) {
+	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
 
