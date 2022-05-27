@@ -71,9 +71,7 @@
           </a>
           <a href="/../shop/shopping-cart"
             ><img src="/../img/icon/cart.png" alt="" />
-            <div th:if="${session.cart_products}">
-              <span th:text="${session.cart_products}"></span>
-            </div>
+             <span th:if="${session.cart_products}" th:text="${session.cart_products}"></span>
           </a>
         </div>
       </div>
