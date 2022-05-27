@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.compusac.models.service.IOfferService;
+import com.compusac.models.service.IProductDetailService;
 //import com.compusac.models.service.IOfferService;
 import com.compusac.models.service.IProductService;
 
@@ -14,6 +15,9 @@ public class Ecommerce {
 
 	@Autowired
 	IProductService productoService;
+	
+	@Autowired
+	IProductDetailService productoDetailService;
 
 	@Autowired
 	IOfferService offerService;
@@ -21,6 +25,7 @@ public class Ecommerce {
 	@RequestMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("productos", productoService.findAll());
+		model.addAttribute("producto_detalles", productoDetailService.findAll());
 		model.addAttribute("ofertas", offerService.findAll());
 		return "index";
 	}
