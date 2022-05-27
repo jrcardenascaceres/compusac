@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
-import com.compusac.models.entity.Categorys;
+import com.compusac.models.entity.Category;
 
 public interface ICategorysService {
 	
-	public List<Categorys> findAll();
+	public List<Category> findAll();
 
-	public Categorys findById(Long id) throws NotFoundException;
+	public Category findById(Long id) throws NotFoundException;
 
-	public Categorys create(Categorys product);
+	public Category create(Category product);
 
-	public Categorys update(Categorys product, Long id);
+	public Category update(Category product, Long id);
 
 	public void delete(Long id);
 

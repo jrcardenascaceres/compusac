@@ -7,7 +7,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.compusac.models.entity.Categorys;
+import com.compusac.models.entity.Category;
 import com.compusac.models.repository.ICategorysRepository;
 
 @Service
@@ -18,23 +18,23 @@ public class CategorysServiceImpl implements ICategorysService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Categorys> findAll() {
-		return (List<Categorys>) categoryRepository.findAll();
+	public List<Category> findAll() {
+		return (List<Category>) categoryRepository.findAll();
 	}
 
 	@Override
-	public Categorys findById(Long id) throws NotFoundException {
+	public Category findById(Long id) throws NotFoundException {
 		// TODO Auto-generated method stub
 		return categoryRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public Categorys create(Categorys product) {
+	public Category create(Category product) {
 		return categoryRepository.save(product);
 	}
 
 	@Override
-	public Categorys update(Categorys product, Long id) {
+	public Category update(Category product, Long id) {
 		// TODO Auto-generated method stub
 		return categoryRepository.save(product);
 	}
