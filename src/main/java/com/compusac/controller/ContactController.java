@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.compusac.models.service.SendMailService;
 
@@ -25,10 +26,12 @@ public class ContactController {
 
 	@PostMapping("/sendMail")
 	public String sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail,
-			@RequestParam("message") String message) {
+			@RequestParam("message") String message, RedirectAttributes redirectAttrs) {
+
 		try {
 			sendMailService.sendMail(mail, "compusac.peru@gmail.com", "Contacto del cliente:" + name,
-					"Correo: mail\n\n" + message);
+					"Correo:" + mail + "\n\n" + message);
+			redirectAttrs.addFlashAttribute("mensaje", "Se envío el email.").addFlashAttribute("clase", "success");
 			return "redirect:/contact";
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

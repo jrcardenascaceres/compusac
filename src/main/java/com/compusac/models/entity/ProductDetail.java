@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,25 @@ public class ProductDetail {
 	private String description;
 	private String image;
 	private Boolean main;
+	/*@OneToOne
+	@JoinColumn(name = "product")
+	private Product producto;
+
+	public Product getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Product producto) {
+		this.producto = producto;
+	}*/
+
+	public void setProduct(int product) {
+		this.product = product;
+	}
+	
+	public int getProduct() {
+		return product;
+	}
 
 	public Long getId() {
 		return id;
@@ -26,13 +47,6 @@ public class ProductDetail {
 		this.id = id;
 	}
 
-	public int getProduct() {
-		return product;
-	}
-
-	public void setProduct(int product) {
-		this.product = product;
-	}
 
 	public String getDescription() {
 		return description;
