@@ -107,10 +107,10 @@ public class ProductController {
 		return "shopping-cart";
 	}
 
-	/*@GetMapping("/checkout")
+	@GetMapping("/checkout")
 	public String checkout(Model model) {
 		model.addAttribute("cart", details);
 		model.addAttribute("order", order);
 		return "checkout";
-	}*/
+	}
 }
