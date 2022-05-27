@@ -22,6 +22,7 @@ public class Product {
 	private String size;
 	private String color;
 	private String material;
+	private String banner;
 
 	public Long getId() {
 		return id;
@@ -101,5 +102,13 @@ public class Product {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+
+	public String getBanner() {
+		return banner;
+	}
+
+	public void setBanner(String banner) {
+		this.banner = banner;
 	}
 }
