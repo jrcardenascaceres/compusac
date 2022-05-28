@@ -76,9 +76,9 @@
                   <tr th:each="detail, iterStat: ${cart}">
                     <td th:text="${iterStat.count}"></td>
                     <td th:text="${detail.nombre}"></td>
-                    <td th:text="${detail.precio}"></td>
+                    <td th:text="${'S/ ' +detail.precio}"></td>
                     <td th:text="${detail.cantidad}"></td>
-                    <td th:text="${detail.total}"></td>
+                    <td th:text="${'S/ ' +detail.total}"></td>
                     <td class="cart__close">
                       <a
                         th:href="@{/shop/delete/cart/{id}(id=${detail.product.id})}"
