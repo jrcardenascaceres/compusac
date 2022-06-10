@@ -11,7 +11,7 @@ import com.compusac.models.entity.Order;
 public interface IOrderService {
     List<Order> findAll();
 
-    Optional<Order> findById(Long id) throws NotFoundException;
+    Order findById(Long id);
 
     Order create(Order order);
 

@@ -1,11 +1,18 @@
 package com.compusac.controller;
 
 import com.compusac.models.entity.Order;
+import com.compusac.models.entity.OrderDetail;
 import com.compusac.models.entity.Person;
+import com.compusac.models.entity.Product;
+import com.compusac.models.entity.ProductDetail;
 import com.compusac.models.entity.Usuario;
+import com.compusac.models.service.IOrderDetailService;
 import com.compusac.models.service.IOrderService;
 import com.compusac.models.service.IPersonService;
+import com.compusac.models.service.IProductService;
 import com.compusac.models.service.IUserService;
+
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +33,18 @@ public class UserController {
     private final IPersonService personService;
 
     private final IOrderService orderService;
+    
+    private final IOrderDetailService orderDetailService;
+ 
+	private final IProductService productoService;
 
-    public UserController(IUserService userService, IPersonService personService, IOrderService orderService) {
+    public UserController(IUserService userService, IPersonService personService, IOrderService orderService, 
+    		IOrderDetailService orderDetailService, IProductService productoService) {
         this.userService = userService;
         this.personService = personService;
         this.orderService = orderService;
+        this.orderDetailService = orderDetailService;
+        this.productoService = productoService;
     }
 
     // BCryptPasswordEncoder passEncode = new BCryptPasswordEncoder();
@@ -101,4 +115,29 @@ public class UserController {
         }
         return "pedidos";
     }
+    
+    @GetMapping(value = "/usuario/detallePedidos/{order_id}")
+	public String getListPedidoById(Model model, @PathVariable("order_id") String order_id) throws NotFoundException {
+		model.addAttribute("status", false);
+		try {   
+			Order order = orderService.findById(Long.parseLong(order_id));
+			
+			/*OrderDetail orderDetail = orderDetailService.findById(Long.parseLong(order_id));
+			
+			Product product = productoService.findById(orderDetail.getProduct().getId());
+			
+			List<String> orders = new ArrayList<>();*/
+			
+			
+			
+            model.addAttribute("ordenesDetalle", orderDetailService.findProductDetailsByOrder(order));
+            
+			model.addAttribute("status", true);
+		} catch (Exception nfe) {
+			model.addAttribute("message", "No existe el producto en mención");
+		}
+
+		return "pedido-detalle";
+	}
+    
 }

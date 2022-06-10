@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.compusac.models.entity.Order;
 import com.compusac.models.entity.OrderDetail;
+import com.compusac.models.entity.ProductDetail;
 import com.compusac.models.repository.IOrderDetailRepository;
 
 @Service
@@ -22,8 +24,9 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
 	}
 
 	@Override
-	public Optional<OrderDetail> findById(Long id) throws NotFoundException {
-		return detailRepository.findById(id);
+	public OrderDetail findById(Long id)  {
+		return detailRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Detalle de orden invalido con Id:" + id));
 	}
 
 	@Override
@@ -40,4 +43,10 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
 	public void delete(Long id) {
 		detailRepository.deleteById(id);
 	}
+
+	@Override
+	public List<OrderDetail> findProductDetailsByOrder(Order order) {
+		return detailRepository.findByOrder(order);
+	}
+
 }

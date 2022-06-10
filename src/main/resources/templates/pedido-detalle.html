@@ -34,10 +34,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4>Pedidos</h4>
+                        <h4>Detalle Pedido</h4>
                         <div class="breadcrumb__links">
                             <a href="./index.html">Inicio</a>
-                            <span>Pedidos</span>
+                            <span>Detalle Pedido</span>
                         </div>
                     </div>
                 </div>
@@ -55,19 +55,18 @@
                         <tbody>
                             <tr>
                                 <th>N° de pedido</th>
-                                <th>Fecha de pedido</th>
-                                <th>Total</th>
-                                <th>Acciones</th>
+                                <th>Imagen</th>
+                                <th>Nombre del producto</th>
+                                <th>Precio</th>
                             </tr>
                         </tbody>
-                        <tbody th:with="existDetail = ${!ordenes.empty}">
-                            <tr th:if="${existDetail}" th:each="orden : ${ordenes}">
-                                <td th:text="${orden.numero}"></td>
-                                <td th:text="${orden.fechaCreacion}"></td>
-                                <td th:text="${'S/ ' + orden.total}"></td>
-                                <td>
-                                    <a th:href="@{'/usuario/detallePedidos/'+${orden.id}}" class="btn"><i class="fa-solid fa-circle-info"></i> Ver detalle</a>
-                                </td>
+                        <tbody>
+                            <tr th:if="${ordenesDetalle}" th:each="orden : ${ordenesDetalle}">
+                                <td th:text="${orden.id}"></td>
+                                <td><img class="set-bg"
+                                        th:src="@{'/../img/product/'+${orden.banner}}" /></td>
+                                <td th:text="${orden.nombre}"></td>
+                                <td th:text="${'S/ ' + orden.precio}"></td>
                             </tr>
                         </tbody>
                     </table>
