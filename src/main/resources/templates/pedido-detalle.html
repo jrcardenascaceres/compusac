@@ -55,7 +55,7 @@
                         <tbody>
                             <tr>
                                 <th>N° de pedido</th>
-                                <th>Imagen</th>
+                                <!--<th>Imagen</th>-->
                                 <th>Nombre del producto</th>
                                 <th>Precio</th>
                             </tr>
@@ -63,8 +63,8 @@
                         <tbody>
                             <tr th:if="${ordenesDetalle}" th:each="orden : ${ordenesDetalle}">
                                 <td th:text="${orden.id}"></td>
-                                <td><img class="set-bg"
-                                        th:src="@{'/../img/product/'+${orden.banner}}" /></td>
+                                <!--<td><img class="set-bg"
+                                        th:src="@{'/../img/product/'+${orden.banner}}" /></td>-->
                                 <td th:text="${orden.nombre}"></td>
                                 <td th:text="${'S/ ' + orden.precio}"></td>
                             </tr>
