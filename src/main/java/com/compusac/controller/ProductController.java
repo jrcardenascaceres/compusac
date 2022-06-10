@@ -1,63 +1,51 @@
 package com.compusac.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.compusac.models.entity.*;
+import com.compusac.models.service.*;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import com.compusac.models.entity.Order;
-import com.compusac.models.entity.OrderDetail;
-import com.compusac.models.entity.Person;
-import com.compusac.models.entity.Product;
-import com.compusac.models.entity.Usuario;
-import com.compusac.models.service.ICategorysService;
-import com.compusac.models.service.IOrderDetailService;
-import com.compusac.models.service.IOrderService;
-import com.compusac.models.service.IPersonService;
-import com.compusac.models.service.IProductService;
-import com.compusac.models.service.IUserService;
-import com.compusac.models.service.SendMailService;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/shop")
 public class ProductController {
 
-	@Autowired
-	private IProductService productoService;
+	private final IProductService productoService;
 
-	@Autowired
-	private ICategorysService categoryService;
+	private final ICategorysService categoryService;
 
-	@Autowired
-	private IOrderService orderService;
+	private final IOrderService orderService;
 
-	@Autowired
-	private IOrderDetailService detailService;
+	private final IOrderDetailService detailService;
 
-	@Autowired
-	private IUserService userService;
+	private final IUserService userService;
 
-	@Autowired
-	private SendMailService sendMailService;
+	private final SendMailService sendMailService;
 
-	@Autowired
-	private IPersonService personService;
+	private final IPersonService personService;
 
 	List<OrderDetail> details = new ArrayList<>();
 	Order order = new Order();
 
+	public ProductController(IProductService productoService, ICategorysService categoryService, IOrderService orderService, IOrderDetailService detailService, IUserService userService, SendMailService sendMailService, IPersonService personService) {
+		this.productoService = productoService;
+		this.categoryService = categoryService;
+		this.orderService = orderService;
+		this.detailService = detailService;
+		this.userService = userService;
+		this.sendMailService = sendMailService;
+		this.personService = personService;
+	}
+
 	@GetMapping
-	public String productos(Model model, HttpSession session) {
+	public String productos(Model model) {
 		model.addAttribute("categoria", categoryService.findAll());
 		model.addAttribute("productos", productoService.findAll());
 
@@ -65,7 +53,7 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/categoria/{id}")
-	public String getById(@PathVariable("id") int id, Model model, HttpSession session) {
+	public String getById(@PathVariable("id") int id, Model model) {
 		model.addAttribute("status", false);
 		try {
 			model.addAttribute("categoria", categoryService.findAll());
@@ -81,7 +69,7 @@ public class ProductController {
 	public String registrarProduct(@RequestParam Long idProduct, @RequestParam int cantidad, Model model,
 			HttpSession session) throws NotFoundException {
 		Product product = productoService.findById(idProduct);
-		if (!details.stream().anyMatch(p -> p.getProduct().getId() == product.getId())) {
+		if (details.stream().noneMatch(p -> Objects.equals(p.getProduct().getId(), product.getId()))) {
 			OrderDetail detail = new OrderDetail();
 			detail.setNombre(product.getName());
 			detail.setPrecio(product.getPrice());
@@ -90,7 +78,7 @@ public class ProductController {
 			detail.setProduct(product);
 			details.add(detail);
 		}
-		Double total = details.stream().mapToDouble(dt -> dt.getTotal()).sum();
+		double total = details.stream().mapToDouble(OrderDetail::getTotal).sum();
 		order.setTotal(total);
 
 		model.addAttribute("cart", details);
@@ -111,16 +99,16 @@ public class ProductController {
 
 	@GetMapping("/delete/cart/{id}")
 	public String deleteProductoCart(@PathVariable Long id, Model model, HttpSession session) {
-		List<OrderDetail> ordenesNueva = new ArrayList<OrderDetail>();
+		List<OrderDetail> ordenesNueva = new ArrayList<>();
 
 		for (OrderDetail detalleOrden : details) {
-			if (detalleOrden.getProduct().getId() != id) {
+			if (!Objects.equals(detalleOrden.getProduct().getId(), id)) {
 				ordenesNueva.add(detalleOrden);
 			}
 		}
 		details = ordenesNueva;
 
-		double sumaTotal = details.stream().mapToDouble(dt -> dt.getTotal()).sum();
+		double sumaTotal = details.stream().mapToDouble(OrderDetail::getTotal).sum();
 
 		order.setTotal(sumaTotal);
 		model.addAttribute("cart", details);

@@ -11,11 +11,11 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
-    
- <!-- Css Styles -->
+        rel="stylesheet">
+
+    <!-- Css Styles -->
     <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    
+
     <div th:include="./header.html::header"></div>
 
     <!-- Breadcrumb Section Begin -->
@@ -61,11 +61,12 @@
                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
-                                                <ul class="nice-scroll" >
-                                                	  <li th:each="categoria : ${categoria}">
-                                                	  	<a  th:href="@{'/shop/categoria/'+${categoria.id}}" th:text="${categoria.name}"></a>
-                                                	  </li>
-                                                </ul> 
+                                                <ul class="nice-scroll">
+                                                    <li th:each="categoria : ${categoria}">
+                                                        <a th:href="@{'/shop/categoria/'+${categoria.id}}"
+                                                            th:text="${categoria.name}"></a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -77,16 +78,17 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6" th:each="producto : ${productos}">
-                            <div class="product__item"  >
+                            <div class="product__item">
                                 <a th:href="@{'/shop-details/'+${producto.id}}">
-                                    <img class="product__item__pic set-bg" th:src="@{'/../img/product/'+${producto.banner}}" />
+                                    <img class="product__item__pic set-bg"
+                                        th:src="@{'/../img/product/'+${producto.banner}}" />
                                 </a>
                                 <div class="product__item__text">
                                     <h6 th:text="${producto.name}"></h6>
                                     <form th:action="@{/shop/add-product-cart}" method="POST">
-                                    	<input type="hidden" th:value="${producto.id}" name="idProduct">
-                                    	<input type="hidden" value="1" name="cantidad">
-                                    	<button type="submit" class="add-cart">+ Agregar al carrito</button>
+                                        <input type="hidden" th:value="${producto.id}" name="idProduct">
+                                        <input type="hidden" value="1" name="cantidad">
+                                        <button type="submit" class="add-cart">+ Agregar al carrito</button>
                                     </form>
                                     <div class="rating">
                                         <i class="fa fa-star-o"></i>
@@ -110,9 +112,9 @@
                                 </div>
                             </div>
                         </div>
-                       
-                      
-                       
+
+
+
                     </div>
                 </div>
             </div>
@@ -135,8 +137,10 @@
     </div>
     <!-- Search End -->
 
-      <!-- Js Plugins -->
+    <!-- Js Plugins -->
     <script src="/../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
     <script src="/../js/bootstrap.min.js"></script>
     <script src="/../js/jquery.nice-select.min.js"></script>
     <script src="/../js/jquery.nicescroll.min.js"></script>

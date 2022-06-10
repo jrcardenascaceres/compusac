@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="description" content="Male_Fashion Template" />
     <meta name="keywords" content="Male_Fashion, unica, creative, html" />
@@ -9,112 +10,95 @@
     <title>Compu SAC | Inicio</title>
 
     <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet" />
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div th:include="./header.html::header"></div>
 
     <!-- Hero Section Begin -->
     <section class="hero">
-      <div class="hero__slider owl-carousel">
-        <div
-          class="hero__items set-bg"
-          th:each="oferta : ${ofertas}"
-          th:attr="data-setbg=${'/../img/hero/' + oferta.banner}"
-        >
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-5 col-lg-7 col-md-8">
-                <div class="hero__text">
-                  <h6 th:text="${oferta.title}">Nuevos Productos</h6>
-                  <h2 th:text="${oferta.subtitle}">
-                    Tablets, Laptops y Desktops
-                  </h2>
-                  <p th:text="${oferta.description}">
-                    Dale un vistazo a los equipos de tu preferencia
-                  </p>
-                  <a
-                    th:href="@{'/shop-details/'+${oferta.product}}"
-                    class="primary-btn"
-                    >Comprar <span class="arrow_right"></span
-                  ></a>
-                  <div class="hero__social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                  </div>
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" th:each="oferta : ${ofertas}"
+                th:attr="data-setbg=${'/../img/hero/' + oferta.banner}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6 th:text="${oferta.title}">Nuevos Productos</h6>
+                                <h2 th:text="${oferta.subtitle}">
+                                    Tablets, Laptops y Desktops
+                                </h2>
+                                <p th:text="${oferta.description}">
+                                    Dale un vistazo a los equipos de tu preferencia
+                                </p>
+                                <a th:href="@{'/shop-details/'+${oferta.product}}" class="primary-btn">Comprar <span
+                                        class="arrow_right"></span></a>
+                                <div class="hero__social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
     <!-- Hero Section End -->
 
     <!-- Banner Section Begin -->
     <section class="banner spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7 offset-lg-4">
-            <div class="banner__item">
-              <div class="banner__item__pic">
-                <img
-                  th:src="@{${'/img/product/' + producto_detalles[0].image}}"
-                  alt=""
-                />
-              </div>
-              <div class="banner__item__text">
-                <h2>Version 2022</h2>
-                <a th:href="@{'/shop-details/'+${productos[0].id}}">Comprar</a>
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 offset-lg-4">
+                    <div class="banner__item">
+                        <div class="banner__item__pic">
+                            <img th:src="@{${'/img/product/' + producto_detalles[0].image}}" alt="" />
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Version 2022</h2>
+                            <a th:href="@{'/shop-details/'+${productos[0].id}}">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="banner__item banner__item--middle">
+                        <div class="banner__item__pic">
+                            <img th:src="@{${'/img/product/' + producto_detalles[1].image}}" alt="" />
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Promociones</h2>
+                            <a th:href="@{'/shop-details/'+${productos[1].id}}">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="banner__item banner__item--last">
+                        <div class="banner__item__pic">
+                            <img th:src="@{${'/img/product/' + producto_detalles[2].image}}" alt="" />
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Periféricos</h2>
+                            <a th:href="@{'/shop-details/'+${productos[2].id}}">Comprar</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="banner__item banner__item--middle">
-              <div class="banner__item__pic">
-                <img
-                  th:src="@{${'/img/product/' + producto_detalles[1].image}}"
-                  alt=""
-                />
-              </div>
-              <div class="banner__item__text">
-                <h2>Promociones</h2>
-                <a th:href="@{'/shop-details/'+${productos[1].id}}">Comprar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="banner__item banner__item--last">
-              <div class="banner__item__pic">
-                <img
-                  th:src="@{${'/img/product/' + producto_detalles[2].image}}"
-                  alt=""
-                />
-              </div>
-              <div class="banner__item__text">
-                <h2>Periféricos</h2>
-                <a th:href="@{'/shop-details/'+${productos[2].id}}">Comprar</a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
     <!-- Banner Section End -->
 
@@ -537,17 +521,18 @@
 
     <!-- Search Begin -->
     <div class="search-model">
-      <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
-        </form>
-      </div>
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here....." />
+            </form>
+        </div>
     </div>
     <!-- Search End -->
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
@@ -557,5 +542,6 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-  </body>
+</body>
+
 </html>

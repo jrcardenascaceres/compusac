@@ -1,145 +1,129 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Male_Fashion Template" />
-    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Compu S.A.C | Checkout</title>
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Male_Fashion Template" />
+  <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Compu S.A.C | Checkout</title>
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="/../css/font-awesome.min.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css" />
-    <link rel="stylesheet" href="/../css/magnific-popup.css" type="text/css" />
-    <link rel="stylesheet" href="/../css/nice-select.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="/../css/owl.carousel.min.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css" />
-    <link rel="stylesheet" href="/../css/style.css" type="text/css" />
-  </head>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <div th:include="./header.html::header"></div>
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css" />
+  <link rel="stylesheet" href="/../css/magnific-popup.css" type="text/css" />
+  <link rel="stylesheet" href="/../css/nice-select.css" type="text/css" />
+  <link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css" />
+  <link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css" />
+  <link rel="stylesheet" href="/../css/style.css" type="text/css" />
+</head>
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="breadcrumb__text">
-              <h4>Check Out</h4>
-              <div class="breadcrumb__links">
-                <a href="./index.html">Inicio</a>
-                <a href="./shop.html">Tienda</a>
-                <span>Check Out</span>
-              </div>
+<body>
+  <div th:include="./header.html::header"></div>
+
+  <!-- Breadcrumb Section Begin -->
+  <section class="breadcrumb-option">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcrumb__text">
+            <h4>Check Out</h4>
+            <div class="breadcrumb__links">
+              <a href="./index.html">Inicio</a>
+              <a href="./shop.html">Tienda</a>
+              <span>Check Out</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+    </div>
+  </section>
+  <!-- Breadcrumb Section End -->
 
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-      <div class="container">
-        <div class="checkout__form">
-          <form action="#" th:action="@{/shop/buy}" method="post">
-            <div class="row">
-              <div class="col-lg-8 col-md-6">
-                <h6 class="coupon__code">
-                  <span class="icon_tag_alt"></span> ¿Tienes un cupón? Haga clic
-                  <a href="#">aquí</a> para introducir su código
-                </h6>
-                <h6 class="checkout__title">Detalles de facturación</h6>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="checkout__input">
-                      <p>Nombres<span>*</span></p>
-                      <input type="text" th:value="${session.userName}" />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="checkout__input">
-                      <p>Apellido<span>*</span></p>
-                      <input type="text" th:value="${session.lastName}" />
-                    </div>
+  <!-- Checkout Section Begin -->
+  <section class="checkout spad">
+    <div class="container">
+      <div class="checkout__form">
+        <form action="#" th:action="@{/shop/buy}" method="post">
+          <div class="row">
+            <div class="col-lg-8 col-md-6">
+              <h6 class="coupon__code">
+                <span class="icon_tag_alt"></span> ¿Tienes un cupón? Haga clic
+                <a href="#">aquí</a> para introducir su código
+              </h6>
+              <h6 class="checkout__title">Detalles de facturación</h6>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="checkout__input">
+                    <p>Nombres<span>*</span></p>
+                    <input type="text" th:value="${session.userName}" />
                   </div>
                 </div>
-                <div class="checkout__input">
-                  <p>País<span>*</span></p>
-                  <input type="text" />
-                </div>
-                <div class="checkout__input">
-                  <p>Dirección<span>*</span></p>
-                  <input
-                    type="text"
-                    placeholder="Street Address"
-                    class="checkout__input__add"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Apartment, suite, unite ect (optinal)"
-                  />
-                </div>
-                <div class="checkout__input">
-                  <p>Pueblo/Ciudad<span>*</span></p>
-                  <input type="text" />
-                </div>
-                <div class="checkout__input">
-                  <p>País/Estado<span>*</span></p>
-                  <input type="text" />
-                </div>
-                <div class="checkout__input">
-                  <p>Código postal / ZIP<span>*</span></p>
-                  <input type="text" />
-                </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="checkout__input">
-                      <p>Teléfono<span>*</span></p>
-                      <input type="text" th:value="${session.telephone}" />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="checkout__input">
-                      <p>Correo electrónico<span>*</span></p>
-                      <input type="text" th:value="${session.email}" />
-                    </div>
+                <div class="col-lg-6">
+                  <div class="checkout__input">
+                    <p>Apellido<span>*</span></p>
+                    <input type="text" th:value="${session.lastName}" />
                   </div>
                 </div>
-                <div class="checkout__input__checkbox">
-                  <label for="acc">
-                    ¿Crear una cuenta?
-                    <input type="checkbox" id="acc" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <p>
-                    Cree una cuenta ingresando la información a continuación. Si
-                    usted es un cliente que regresa, inicie sesión en la parte
-                    superior de la página
-                  </p>
+              </div>
+              <div class="checkout__input">
+                <p>País<span>*</span></p>
+                <input type="text" />
+              </div>
+              <div class="checkout__input">
+                <p>Dirección<span>*</span></p>
+                <input type="text" placeholder="Street Address" class="checkout__input__add" />
+                <input type="text" placeholder="Apartment, suite, unite ect (optinal)" />
+              </div>
+              <div class="checkout__input">
+                <p>Pueblo/Ciudad<span>*</span></p>
+                <input type="text" />
+              </div>
+              <div class="checkout__input">
+                <p>País/Estado<span>*</span></p>
+                <input type="text" />
+              </div>
+              <div class="checkout__input">
+                <p>Código postal / ZIP<span>*</span></p>
+                <input type="text" />
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="checkout__input">
+                    <p>Teléfono<span>*</span></p>
+                    <input type="text" th:value="${session.telephone}" />
+                  </div>
                 </div>
-                <div class="checkout__input">
-                  <p>Contraseña de la cuenta*<span>*</span></p>
-                  <input type="text" name="userPass" />
+                <div class="col-lg-6">
+                  <div class="checkout__input">
+                    <p>Correo electrónico<span>*</span></p>
+                    <input type="text" th:value="${session.email}" />
+                  </div>
                 </div>
-                <!--<div class="checkout__input__checkbox">
+              </div>
+              <div class="checkout__input__checkbox">
+                <label for="acc">
+                  ¿Crear una cuenta?
+                  <input type="checkbox" id="acc" />
+                  <span class="checkmark"></span>
+                </label>
+                <p>
+                  Cree una cuenta ingresando la información a continuación. Si
+                  usted es un cliente que regresa, inicie sesión en la parte
+                  superior de la página
+                </p>
+              </div>
+              <div class="checkout__input">
+                <p>Contraseña de la cuenta*<span>*</span></p>
+                <input type="text" name="userPass" />
+              </div>
+              <!--<div class="checkout__input__checkbox">
                   <label for="diff-acc">
                     Note about your order, e.g, special noe for delivery
                     <input type="checkbox" id="diff-acc" />
@@ -153,26 +137,25 @@
                     placeholder="Notes about your order, e.g. special notes for delivery."
                   />
                 </div>-->
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="checkout__order">
-                  <h4 class="order__title">Su pedido</h4>
-                  <div class="checkout__order__products">
-                    Producto <span>Total</span>
-                  </div>
-                  <ul class="checkout__total__products">
-                    <li
-                      th:each="detail, iterStat: ${cart}"
-                      th:utext="${iterStat.count} + '. ' + ${detail.nombre} + ' -----> '+ ${detail.cantidad}+' X ' +${'S/ '+detail.precio} + '<span>'+${' S/ '+detail.total}+'</span>'"
-                    ></li>
-                  </ul>
-                  <ul class="checkout__total__all">
-                    <li>
-                      Subtotal <span th:text="${'S/ '+order.total}"></span>
-                    </li>
-                    <li>Total <span th:text="${'S/ '+order.total}"></span></li>
-                  </ul>
-                  <!--<div class="checkout__input__checkbox">
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="checkout__order">
+                <h4 class="order__title">Su pedido</h4>
+                <div class="checkout__order__products">
+                  Producto <span>Total</span>
+                </div>
+                <ul class="checkout__total__products">
+                  <li th:each="detail, iterStat: ${cart}"
+                    th:utext="${iterStat.count} + '. ' + ${detail.nombre} + ' -----> '+ ${detail.cantidad}+' X ' +${'S/ '+detail.precio} + '<span>'+${' S/ '+detail.total}+'</span>'">
+                  </li>
+                </ul>
+                <ul class="checkout__total__all">
+                  <li>
+                    Subtotal <span th:text="${'S/ '+order.total}"></span>
+                  </li>
+                  <li>Total <span th:text="${'S/ '+order.total}"></span></li>
+                </ul>
+                <!--<div class="checkout__input__checkbox">
                     <label for="acc-or">
                       Create an account?
                       <input type="checkbox" id="acc-or" />
@@ -197,51 +180,53 @@
                       <span class="checkmark"></span>
                     </label>
                   </div>-->
-                  <button type="submit" class="site-btn">
-                    Realizar pedido
-                  </button>
-                </div>
+                <button type="submit" class="site-btn">
+                  Realizar pedido
+                </button>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!-- Checkout Section End -->
-
-    <div class="footer" th:include="./footer.html::footer"></div>
-
-    <!-- Search Begin -->
-    <div class="search-model">
-      <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
+          </div>
         </form>
       </div>
     </div>
-    <!-- Search End -->
+  </section>
+  <!-- Checkout Section End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="/../js/jquery-3.3.1.min.js"></script>
-    <script src="/../js/bootstrap.min.js"></script>
-    <script src="/../js/jquery.nice-select.min.js"></script>
-    <script src="/../js/jquery.nicescroll.min.js"></script>
-    <script src="/../js/jquery.magnific-popup.min.js"></script>
-    <script src="/../js/jquery.countdown.min.js"></script>
-    <script src="/../js/jquery.slicknav.js"></script>
-    <script src="/../js/mixitup.min.js"></script>
-    <script src="/../js/owl.carousel.min.js"></script>
-    <script src="/../js/main.js"></script>
-  </body>
+  <div class="footer" th:include="./footer.html::footer"></div>
+
+  <!-- Search Begin -->
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form class="search-model-form">
+        <input type="text" id="search-input" placeholder="Search here....." />
+      </form>
+    </div>
+  </div>
+  <!-- Search End -->
+
+  <!-- Js Plugins -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="js/jquery.nicescroll.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.slicknav.js"></script>
+  <script src="js/mixitup.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="/../js/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+  <script src="/../js/bootstrap.min.js"></script>
+  <script src="/../js/jquery.nice-select.min.js"></script>
+  <script src="/../js/jquery.nicescroll.min.js"></script>
+  <script src="/../js/jquery.magnific-popup.min.js"></script>
+  <script src="/../js/jquery.countdown.min.js"></script>
+  <script src="/../js/jquery.slicknav.js"></script>
+  <script src="/../js/mixitup.min.js"></script>
+  <script src="/../js/owl.carousel.min.js"></script>
+  <script src="/../js/main.js"></script>
+</body>
+
 </html>

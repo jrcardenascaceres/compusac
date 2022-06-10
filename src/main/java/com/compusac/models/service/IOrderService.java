@@ -3,20 +3,23 @@ package com.compusac.models.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.compusac.models.entity.Usuario;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.compusac.models.entity.Order;
 
 public interface IOrderService {
-	public List<Order> findAll();
+    List<Order> findAll();
 
-	public Optional<Order> findById(Long id) throws NotFoundException;
+    Optional<Order> findById(Long id) throws NotFoundException;
 
-	public Order create(Order order);
+    Order create(Order order);
 
-	public Order update(Order order, Long id);
+    Order update(Order order, Long id);
 
-	public void delete(Long id);
+    void delete(Long id);
 
-	public String generarNumeroOrden();
+    String generarNumeroOrden();
+
+    List<Order> findByUsuario(Usuario usuario) throws NotFoundException;
 }
