@@ -12,16 +12,35 @@ import com.compusac.models.service.IPersonService;
 import com.compusac.models.service.IProductService;
 import com.compusac.models.service.IUserService;
 
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRSaver;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.export.SimplePdfReportConfiguration;
+
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -122,14 +141,6 @@ public class UserController {
 		try {   
 			Order order = orderService.findById(Long.parseLong(order_id));
 			
-			/*OrderDetail orderDetail = orderDetailService.findById(Long.parseLong(order_id));
-			
-			Product product = productoService.findById(orderDetail.getProduct().getId());
-			
-			List<String> orders = new ArrayList<>();*/
-			
-			
-			
             model.addAttribute("ordenesDetalle", orderDetailService.findProductDetailsByOrder(order));
             
 			model.addAttribute("status", true);
@@ -139,5 +150,40 @@ public class UserController {
 
 		return "pedido-detalle";
 	}
+    
+    @GetMapping("/usuario/descargar")
+	public String getDescargar(Model model)  {
+		model.addAttribute("status", false);
+		 String reportPath = "C:\\Users\\criss\\Documents";
+		try {   
+			
+            List<OrderDetail> orderDetail =  orderDetailService.findAll();
+
+			// Compile the Jasper report from .jrxml to .japser
+			JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\criss\\Documents\\cursos\\git_integrador\\compusac\\src\\main\\resources\\reporte.jrxml");
+
+			// Get your data source
+			JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(orderDetail);
+
+			// Add parameters
+			Map<String, Object> parameters = new HashMap<>();
+
+			parameters.put("createdBy", "Websparrow.org");
+
+			// Fill the report
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
+					jrBeanCollectionDataSource);
+
+			// Export the report to a PDF file
+			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\probandot.pdf");
+
+			System.out.println("Done");
+
+		} catch (Exception nfe) {
+			model.addAttribute("message", "No existe el producto en mención");
+		}
+		
+		return "pedido-detalle";
+    }
     
 }
