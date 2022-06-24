@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Male_Fashion Template">
+	<meta name="keywords" content="Male_Fashion, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Compu SAC | Tienda</title>
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+	<link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/../css/style.css" type="text/css">
+</head>
+
+<body>
+
+	<div th:include="./header.html::header"></div>
+
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb__text">
+						<h4>Productos</h4>
+						<div class="breadcrumb__links">
+							<a href="./index.html">Inicio</a>
+							<span>Productos</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
+
+	<!-- Shop Section Begin -->
+
+	<div class="container">
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Id del Producto</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td text="">1</td>
+					<td text="">Laptop</td>
+					<td text="">LAPTOP LENOVO V14-ARE, AMD RYZEN 5 4500</td>
+					<td text="">S/ 1500.0</td>
+					<td>
+						<a class="btn btn-danger btn-sm" href="" text="'Eliminar'" title="Eliminar Registro"
+							onclick="return confirm('Esta seguro que quiere eliminar el producto?');"> Eliminar
+						</a>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td text="">2</td>
+					<td text="">Computadora</td>
+					<td text="">Pc Gaming Plus Amd: RYZEN 5 5600g</td>
+					<td text="">S/ 2100.0</td>
+					<td>
+						<a class="btn btn-danger btn-sm" href="" text="'Eliminar'" title="Eliminar Registro"
+							onclick="return confirm('Esta seguro que quiere eliminar el producto?');"> Eliminar
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Shop Section End -->
+
+	<div class="footer" th:include="./footer.html::footer"></div>
+
+
+
+	<!-- Search Begin -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search End -->
+
+	<!-- Js Plugins -->
+	<script src="/../js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+	<script src="/../js/bootstrap.min.js"></script>
+	<script src="/../js/jquery.nice-select.min.js"></script>
+	<script src="/../js/jquery.nicescroll.min.js"></script>
+	<script src="/../js/jquery.magnific-popup.min.js"></script>
+	<script src="/../js/jquery.countdown.min.js"></script>
+	<script src="/../js/jquery.slicknav.js"></script>
+	<script src="/../js/mixitup.min.js"></script>
+	<script src="/../js/owl.carousel.min.js"></script>
+	<script src="/../js/main.js"></script>
+</body>
+
+</html>

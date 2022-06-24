@@ -153,4 +153,10 @@ public class ProductController {
 		return "redirect:/index";
 
 	}
+	
+	@GetMapping("/eliminar")
+	public String eliminarproducto () {
+		
+		return "eliminarproducto";
+	}
 }
