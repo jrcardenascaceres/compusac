@@ -3,48 +3,19 @@ package com.compusac.controller;
 import com.compusac.models.entity.Order;
 import com.compusac.models.entity.OrderDetail;
 import com.compusac.models.entity.Person;
-import com.compusac.models.entity.Product;
-import com.compusac.models.entity.ProductDetail;
 import com.compusac.models.entity.Usuario;
-import com.compusac.models.service.IOrderDetailService;
-import com.compusac.models.service.IOrderService;
-import com.compusac.models.service.IPersonService;
-import com.compusac.models.service.IProductService;
-import com.compusac.models.service.IUserService;
-
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.util.JRSaver;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.export.SimplePdfReportConfiguration;
-
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import com.compusac.models.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-
-import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
-//@RequestMapping ("")
+@RequestMapping("/usuario")
 public class UserController {
 
     private final IUserService userService;
@@ -52,46 +23,41 @@ public class UserController {
     private final IPersonService personService;
 
     private final IOrderService orderService;
-    
-    private final IOrderDetailService orderDetailService;
- 
-	private final IProductService productoService;
 
-    public UserController(IUserService userService, IPersonService personService, IOrderService orderService, 
-    		IOrderDetailService orderDetailService, IProductService productoService) {
+    private final IOrderDetailService orderDetailService;
+
+    private final OrderReportService reportService;
+
+    public UserController(IUserService userService, IPersonService personService, IOrderService orderService,
+                          IOrderDetailService orderDetailService, OrderReportService reportService) {
         this.userService = userService;
         this.personService = personService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
-        this.productoService = productoService;
+        this.reportService = reportService;
     }
 
-    // BCryptPasswordEncoder passEncode = new BCryptPasswordEncoder();
-
-    @GetMapping("/usuario/registro")
+    @GetMapping("/registro")
     public String create() {
         return "register";
     }
 
-    @PostMapping("/usuario/save")
+    @PostMapping("/save")
     public String save(Person person, Usuario user) {
         Long idPersona = personService.guardar(person).getId();
-
         user.setPerson(idPersona);
-
         user.setUserName(person.getEmail());
-        // user.setUserPass(passEncode.encode(user.getUserPass()));
         userService.guardar(user);
 
         return "redirect:/index";
     }
 
-    @GetMapping("/usuario/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/usuario/acceder")
+    @GetMapping("/acceder")
     public String acceder(Usuario usuario, HttpSession session) {
         Optional<Usuario> user = userService.findByUserName(usuario.getUserName());
         if (user.isPresent()) {
@@ -109,7 +75,7 @@ public class UserController {
         return "redirect:/index";
     }
 
-    @GetMapping("/usuario/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
 
         session.removeAttribute("idusuario");
@@ -119,7 +85,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/usuario/pedidos/{userId}")
+    @GetMapping("/pedidos/{userId}")
     public String orders(Model model, @PathVariable("userId") String userId) {
         try {
             List<Order> orders = new ArrayList<>();
@@ -128,62 +94,55 @@ public class UserController {
                 orders.addAll(orderService.findByUsuario(usuario));
             }
             model.addAttribute("ordenes", orders);
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return "pedidos";
     }
-    
-    @GetMapping(value = "/usuario/detallePedidos/{order_id}")
-	public String getListPedidoById(Model model, @PathVariable("order_id") String order_id) throws NotFoundException {
-		model.addAttribute("status", false);
-		try {   
-			Order order = orderService.findById(Long.parseLong(order_id));
-			
+
+    @GetMapping(value = "/detallePedidos/{order_id}")
+    public String getListPedidoById(Model model, @PathVariable("order_id") String order_id) {
+        model.addAttribute("status", false);
+        try {
+            Order order = orderService.findById(Long.parseLong(order_id));
             model.addAttribute("ordenesDetalle", orderDetailService.findProductDetailsByOrder(order));
-            
-			model.addAttribute("status", true);
-		} catch (Exception nfe) {
-			model.addAttribute("message", "No existe el producto en mención");
-		}
+            model.addAttribute("status", true);
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+        }
 
-		return "pedido-detalle";
-	}
-    
-    @GetMapping("/usuario/descargar")
-	public String getDescargar(Model model)  {
-		model.addAttribute("status", false);
-		 String reportPath = "C:\\Users\\criss\\Documents";
-		try {   
-			
-            List<OrderDetail> orderDetail =  orderDetailService.findAll();
-
-			// Compile the Jasper report from .jrxml to .japser
-			JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\criss\\Documents\\cursos\\git_integrador\\compusac\\src\\main\\resources\\reporte.jrxml");
-
-			// Get your data source
-			JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(orderDetail);
-
-			// Add parameters
-			Map<String, Object> parameters = new HashMap<>();
-
-			parameters.put("createdBy", "Websparrow.org");
-
-			// Fill the report
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
-					jrBeanCollectionDataSource);
-
-			// Export the report to a PDF file
-			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\probandot.pdf");
-
-			System.out.println("Done");
-
-		} catch (Exception nfe) {
-			model.addAttribute("message", "No existe el producto en mención");
-		}
-		
-		return "pedido-detalle";
+        return "pedido-detalle";
     }
-    
+
+    @PostMapping("/export/orders")
+    public String exportOrders(@RequestParam String userId, @RequestParam String reportFormat) {
+        List<Order> orders = new ArrayList<>();
+        try {
+            if (!userId.equals("null")) {
+                Usuario usuario = userService.findById(Long.parseLong(userId));
+                orders.addAll(orderService.findByUsuario(usuario));
+            }
+            reportService.generateOrderReport(orders, reportFormat);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/index";
+    }
+
+    @PostMapping("/export/order-details")
+    public String exportOrderDetails(Model model, @RequestParam String orderId, @RequestParam String reportFormat) {
+        model.addAttribute("status", false);
+        try {
+            Order order = orderService.findById(Long.valueOf(orderId));
+            List<OrderDetail> orderDetail = orderDetailService.findProductDetailsByOrder(order);
+            reportService.generateOrderDetailReport(orderDetail, reportFormat);
+
+            model.addAttribute("ordenesDetalle", orderDetail);
+            model.addAttribute("status", true);
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+        }
+
+        return "pedido-detalle";
+    }
 }
