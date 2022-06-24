@@ -81,6 +81,11 @@ public class UserController {
 
         user.setUserName(person.getEmail());
         // user.setUserPass(passEncode.encode(user.getUserPass()));
+        
+        if (user.getRol().equals("null")) {
+            user.setRol(0);
+        }
+        
         userService.guardar(user);
 
         return "redirect:/index";
@@ -101,6 +106,10 @@ public class UserController {
             session.setAttribute("lastName", p.getLastName());
             session.setAttribute("email", p.getEmail());
             session.setAttribute("telephone", p.getTelephone());
+            if (user.get().getRol() != 0 ) {
+                session.setAttribute("rol", user.get().getRol());
+            }
+
         } else {
             session.removeAttribute("idusuario");
             session.removeAttribute("userName");
@@ -115,6 +124,7 @@ public class UserController {
         session.removeAttribute("idusuario");
         session.removeAttribute("userName");
         session.removeAttribute("cart_products");
+        session.removeAttribute("rol");
 
         return "login";
     }
@@ -134,6 +144,12 @@ public class UserController {
         }
         return "pedidos";
     }
+    
+    @GetMapping("/usuario/productos")
+	public String productos(Model model) {
+		model.addAttribute("productosAdmin", productoService.findAll());
+		return "productos-admin";
+	}
     
     @GetMapping(value = "/usuario/detallePedidos/{order_id}")
 	public String getListPedidoById(Model model, @PathVariable("order_id") String order_id) throws NotFoundException {
@@ -175,7 +191,7 @@ public class UserController {
 					jrBeanCollectionDataSource);
 
 			// Export the report to a PDF file
-			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\probandot.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\reporte_orden.pdf");
 
 			System.out.println("Done");
 
