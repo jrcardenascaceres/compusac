@@ -19,6 +19,8 @@ public class Usuario {
 	private String userName;
 	@Column(name = "user_pass")
 	private String userPass;
+	@Column(name = "rol")
+	private Integer rol;
 
 	public Long getId() {
 		return id;
@@ -50,6 +52,14 @@ public class Usuario {
 
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
+	}
+	
+	public Integer getRol() {
+		return rol;
+	}
+
+	public void setRol(Integer rol) {
+		this.rol = rol;
 	}
 
 }

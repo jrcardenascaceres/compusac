@@ -29,7 +29,7 @@ public class UserController {
     private final OrderReportService reportService;
 
     public UserController(IUserService userService, IPersonService personService, IOrderService orderService,
-                          IOrderDetailService orderDetailService, OrderReportService reportService) {
+            IOrderDetailService orderDetailService, OrderReportService reportService) {
         this.userService = userService;
         this.personService = personService;
         this.orderService = orderService;
@@ -47,6 +47,12 @@ public class UserController {
         Long idPersona = personService.guardar(person).getId();
         user.setPerson(idPersona);
         user.setUserName(person.getEmail());
+        // user.setUserPass(passEncode.encode(user.getUserPass()));
+
+        if (user.getRol().equals("null")) {
+            user.setRol(0);
+        }
+
         userService.guardar(user);
 
         return "redirect:/index";
@@ -67,6 +73,10 @@ public class UserController {
             session.setAttribute("lastName", p.getLastName());
             session.setAttribute("email", p.getEmail());
             session.setAttribute("telephone", p.getTelephone());
+            if (user.get().getRol() != 0) {
+                session.setAttribute("rol", user.get().getRol());
+            }
+
         } else {
             session.removeAttribute("idusuario");
             session.removeAttribute("userName");
@@ -81,6 +91,7 @@ public class UserController {
         session.removeAttribute("idusuario");
         session.removeAttribute("userName");
         session.removeAttribute("cart_products");
+        session.removeAttribute("rol");
 
         return "login";
     }
@@ -100,11 +111,18 @@ public class UserController {
         return "pedidos";
     }
 
+    @GetMapping("/productos")
+    public String productos(Model model) {
+        model.addAttribute("productosAdmin", productoService.findAll());
+        return "productos-admin";
+    }
+
     @GetMapping(value = "/detallePedidos/{order_id}")
     public String getListPedidoById(Model model, @PathVariable("order_id") String order_id) {
         model.addAttribute("status", false);
         try {
             Order order = orderService.findById(Long.parseLong(order_id));
+
             model.addAttribute("ordenesDetalle", orderDetailService.findProductDetailsByOrder(order));
             model.addAttribute("status", true);
         } catch (Exception e) {

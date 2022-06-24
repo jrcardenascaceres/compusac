@@ -34,7 +34,7 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[nombre]]></text>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="111" y="41" width="111" height="20"/>
@@ -48,7 +48,7 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[precio]]></text>
+				<text><![CDATA[Precio]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
