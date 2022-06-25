@@ -49,11 +49,9 @@
     <section class="shop spad">
         <div class="container">
             <div class="row">
+                
                 <div class="col-lg-12">
-                    <a href="/usuario/descargar" class="btn"><i class="fa-solid fa-download"></i> Descargar</a>
-                </div>
-                <div class="col-lg-12">
-                    <table class="table">
+                    <!--<table class="table">
                         <tbody>
                             <tr class="text-center">
                                 <th>N° de pedido</th>
@@ -73,14 +71,18 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>-->
 
                     <!-- Shop Section Begin -->
-                    <section class="shop spad">
+                    <section>
                         <div class="container">
                             <div class="row" th:with="existDetail = ${!ordenes.empty}">
                                 <div class="col-lg-12" th:if="${existDetail}">
+                                
                                     <hr>
+	                                <div class="float-left">
+					                    <a href="/usuario/descargar" class="btn"><i class="fa-solid fa-download"></i> Descargar</a>
+					                </div>
                                     <div class="float-right">
                                         <form th:action="@{/usuario/export/orders}" method="POST">
                                             <input type="hidden" th:value="${session.idusuario}" name="userId">
@@ -136,9 +138,7 @@
                     </section>
                     <!-- Shop Section End -->
 
-                    <div class="footer" th:include="./footer.html::footer"></div>
-
-
+                  
                     <!-- Search Begin -->
                     <div class="search-model">
                         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -152,6 +152,9 @@
             </div>
         </div>
     </section>
+      <div class="footer" th:include="./footer.html::footer"></div>
+
+
     <!-- Search End -->
 
     <!-- Js Plugins -->

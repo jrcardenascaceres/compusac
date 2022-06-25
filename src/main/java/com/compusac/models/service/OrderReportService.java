@@ -16,7 +16,7 @@ import java.util.Map;
 public class OrderReportService {
     public String generateOrderReport(List<Order> orders, String reportFormat) {
         try {
-            String reportPath = "D:\\";
+            String reportPath = "C:\\\\Users\\\\criss\\\\Documents\\";
             // Load file and Compile the Jasper report from .jrxml to .japser
             File file = ResourceUtils.getFile("classpath:OrderReport.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -51,7 +51,7 @@ public class OrderReportService {
 
     public String generateOrderDetailReport(List<OrderDetail> orderDetails, String reportFormat) {
         try {
-            String reportPath = "D:\\";
+            String reportPath = "C:\\Users\\criss\\Documents\\"; 
 
             // Load file and Compile the Jasper report from .jrxml to .japser
             File file = ResourceUtils.getFile("classpath:reporte.jrxml");

@@ -5,6 +5,9 @@ import com.compusac.models.entity.OrderDetail;
 import com.compusac.models.entity.Person;
 import com.compusac.models.entity.Usuario;
 import com.compusac.models.service.*;
+
+import net.bytebuddy.asm.Advice.This;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +30,17 @@ public class UserController {
     private final IOrderDetailService orderDetailService;
 
     private final OrderReportService reportService;
+    
+	private final IProductService productoService;
 
     public UserController(IUserService userService, IPersonService personService, IOrderService orderService,
-            IOrderDetailService orderDetailService, OrderReportService reportService) {
+            IOrderDetailService orderDetailService, OrderReportService reportService, IProductService productoService) {
         this.userService = userService;
         this.personService = personService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.reportService = reportService;
+        this.productoService = productoService;
     }
 
     @GetMapping("/registro")
@@ -113,7 +119,7 @@ public class UserController {
 
     @GetMapping("/productos")
     public String productos(Model model) {
-        //model.addAttribute("productosAdmin", productoService.findAll());
+        model.addAttribute("productosAdmin", productoService.findAll());
         return "productos-admin";
     }
 
