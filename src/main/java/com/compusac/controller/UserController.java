@@ -113,7 +113,7 @@ public class UserController {
 
     @GetMapping("/productos")
     public String productos(Model model) {
-        model.addAttribute("productosAdmin", productoService.findAll());
+        //model.addAttribute("productosAdmin", productoService.findAll());
         return "productos-admin";
     }
 
@@ -162,5 +162,10 @@ public class UserController {
         }
 
         return "pedido-detalle";
+    }
+
+    @GetMapping("/form-producto")
+    public String formProducto(Model model) {
+        return "form-producto";
     }
 }
