@@ -5,9 +5,7 @@ import com.compusac.models.entity.OrderDetail;
 import com.compusac.models.entity.Person;
 import com.compusac.models.entity.Usuario;
 import com.compusac.models.service.*;
-
-import net.bytebuddy.asm.Advice.This;
-
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +31,17 @@ public class UserController {
     
 	private final IProductService productoService;
 
+    private final ICategorysService categoryService;
+
     public UserController(IUserService userService, IPersonService personService, IOrderService orderService,
-            IOrderDetailService orderDetailService, OrderReportService reportService, IProductService productoService) {
+                          IOrderDetailService orderDetailService, OrderReportService reportService, IProductService productoService, ICategorysService categoryService) {
         this.userService = userService;
         this.personService = personService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.reportService = reportService;
         this.productoService = productoService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/registro")
@@ -173,5 +174,12 @@ public class UserController {
     @GetMapping("/form-producto")
     public String formProducto(Model model) {
         return "form-producto";
+    }
+
+    @GetMapping(value = "/form-producto/{productId}")
+    public String updateProduct(Model model, @PathVariable("productId") Long productId) throws ChangeSetPersister.NotFoundException {
+        model.addAttribute("producto", productoService.findById(productId));
+        model.addAttribute("categorias", categoryService.findAll());
+        return "update-form-producto";
     }
 }

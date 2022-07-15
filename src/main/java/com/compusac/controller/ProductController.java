@@ -5,9 +5,16 @@ import com.compusac.models.service.*;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +38,12 @@ public class ProductController {
 
 	private final IPersonService personService;
 
+	private final IProductDetailService productDetailService;
+
 	List<OrderDetail> details = new ArrayList<>();
 	Order order = new Order();
 
-	public ProductController(IProductService productoService, ICategorysService categoryService, IOrderService orderService, IOrderDetailService detailService, IUserService userService, SendMailService sendMailService, IPersonService personService) {
+	public ProductController(IProductService productoService, ICategorysService categoryService, IOrderService orderService, IOrderDetailService detailService, IUserService userService, SendMailService sendMailService, IPersonService personService, IProductDetailService productDetailService) {
 		this.productoService = productoService;
 		this.categoryService = categoryService;
 		this.orderService = orderService;
@@ -42,6 +51,7 @@ public class ProductController {
 		this.userService = userService;
 		this.sendMailService = sendMailService;
 		this.personService = personService;
+		this.productDetailService = productDetailService;
 	}
 
 	@GetMapping
@@ -158,5 +168,41 @@ public class ProductController {
 	public String eliminarproducto () {
 		
 		return "eliminarproducto";
+	}
+
+	@PostMapping("/update-product")
+	public String save(Product product, @RequestParam("baner") MultipartFile baner, RedirectAttributes attributes) {
+		// check if file is empty
+		if (baner.isEmpty()) {
+			attributes.addFlashAttribute("message", "Please select a file to upload.");
+			return "redirect:/";
+		}
+		try {
+			String UPLOAD_DIR = "/";
+			//Subir imagen del producto
+			String banerName = StringUtils.cleanPath(baner.getOriginalFilename());
+			Path path = Paths.get(UPLOAD_DIR + banerName);
+			Files.copy(baner.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+			product.setBanner(banerName);
+			productoService.update(product, product.getId());
+
+			/*//Subir imagenes del producto
+			for (MultipartFile file : imgProds) {
+				String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+				Path path = Paths.get(UPLOAD_DIR + fileName);
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+				//Guardar imagenes del producto
+				ProductDetail productDetail = new ProductDetail();
+				productDetail.setProduct(product);
+				productDetail.setImage(fileName);
+				productDetailService.create(productDetail);
+			}*/
+			attributes.addFlashAttribute("message","El producto fue actualizado");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/index";
 	}
 }

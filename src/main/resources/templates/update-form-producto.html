@@ -13,14 +13,14 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/../css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/style.css" type="text/css">
 </head>
 <body>
     <div th:include="./header.html::header"></div>
@@ -44,9 +44,13 @@
     <section class="shop spad">
         <div class="container">
             <div class="row">
-                <form method="POST">
+                <div th:if="${message ne null}">
+                    <p th:text="${message}" class="alert alert-primary"></p>
+                </div>
+                <form th:action="@{/shop/update-product}" method="post" enctype="multipart/form-data">
                     <legend>Registrar nuevo producto</legend>
                     <hr>
+                    <input type="hidden" name="id" th:value="${producto.id}">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
@@ -55,48 +59,53 @@
                             </div>
                             <div class="mb-3">
                                 <label for="categoria" class="form-label">Categoria</label>
-                                <select  id="categoria">
+                                <select  id="categoria" name="category">
                                     <option selected>Selecione una categoria</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.name}" th:selected="${categoria.id==producto.category}"></option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="tag" class="form-label">Tag</label>
-                                <input type="text" class="form-control" id="tag">
+                                <input type="text" class="form-control" id="tag" name="tag" th:value="${producto.tag}">
                             </div>
                             <div class="mb-3 form-floating">
-                                <textarea class="form-control" placeholder="Información del producto" id="floatingTextarea"></textarea>
+                                <textarea class="form-control" placeholder="Información del producto" id="floatingTextarea" name="product_information" th:text="${producto.product_information}"></textarea>
                                 <label for="floatingTextarea">Información del producto</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
                                 <label for="serie" class="form-label">Número de serie</label>
-                                <input type="text" class="form-control" id="serie">
+                                <input type="text" class="form-control" id="serie" name="number_serie" th:value="${producto.number_serie}">
                             </div>
                             <div class="mb-3">
                                 <label for="precio" class="form-label">Precio S/</label>
-                                <input type="number" class="form-control" id="precio">
+                                <input type="number" class="form-control" id="precio" name="price" th:value="${producto.price}">
                             </div>
                             <div class="mb-3">
                                 <label for="tamanio" class="form-label">Tamaño</label>
-                                <input type="text" class="form-control" id="tamanio">
+                                <input type="text" class="form-control" id="tamanio" name="size" th:value="${producto.size}">
                             </div>
                             <div class="mb-3">
                                 <label for="color" class="form-label">Color</label>
-                                <input type="color" class="form-control" id="color">
+                                <input type="text" class="form-control" id="color" name="color" th:value="${producto.color}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="material" class="form-label">Material</label>
+                                <input type="text" class="form-control" id="material" name="material" th:value="${producto.material}">
                             </div>
                             <div class="mb-3">
                                 <label for="baner" class="form-label">Banner</label>
-                                <input type="file" class="form-control" id="baner">
+                                <input type="file" class="form-control" id="baner" name="baner" aria-describedby="banerHelpBlock">
+                                <div id="banerHelpBlock" class="form-text" th:if="${producto.banner ne null}">
+                                    <p th:text="${message}" class="alert alert-primary"></p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
                                 <label for="imgprods" class="form-label">Imagenes del producto</label>
-                                <input type="file" class="form-control" id="imgprods">
+                                <input type="file" class="form-control" id="imgprods" multiple>
                             </div>
                             <ul>
                                 <li><input type="checkbox"> Img one</li>
@@ -127,16 +136,16 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="/../js/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery.nicescroll.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.countdown.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="/../js/bootstrap.min.js"></script>
+    <script src="/../js/jquery.nice-select.min.js"></script>
+    <script src="/../js/jquery.nicescroll.min.js"></script>
+    <script src="/../js/jquery.magnific-popup.min.js"></script>
+    <script src="/../js/jquery.countdown.min.js"></script>
+    <script src="/../js/jquery.slicknav.js"></script>
+    <script src="/../js/mixitup.min.js"></script>
+    <script src="/../js/owl.carousel.min.js"></script>
+    <script src="/../js/main.js"></script>
 </body>
 </html>
