@@ -82,7 +82,7 @@
                                <td th:text="${productosAdmin.size}"></td>
                                <td th:text="${productosAdmin.color}"></td>
                                 <td>
-                                    <a th:href="@{'/usuario/form-producto/'+${productosAdmin.id}}" class="btn btn-primary mb-3"><i class="fa-solid fa-solid fa-pen-to-square"></i> Editar</a>
+                                    <a th:href="@{'/usuario/update/producto/'+${productosAdmin.id}}" class="btn btn-primary mb-3"><i class="fa-solid fa-solid fa-pen-to-square"></i> Editar</a>
                                     <a th:href="@{'/usuario/delete/producto/'+${productosAdmin.id}}" title="Eliminar Registro" onclick="return confirm('Esta seguro que quiere eliminar el producto?');" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</a>  
                                 </td>
                             </tr>

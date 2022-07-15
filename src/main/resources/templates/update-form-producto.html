@@ -98,7 +98,7 @@
                                 <label for="baner" class="form-label">Banner</label>
                                 <input type="file" class="form-control" id="baner" name="baner" aria-describedby="banerHelpBlock">
                                 <div id="banerHelpBlock" class="form-text" th:if="${producto.banner ne null}">
-                                    <p th:text="${message}" class="alert alert-primary"></p>
+                                    <p th:text="${'Ya existe un baner '+producto.banner}" class="alert alert-primary"></p>
                                 </div>
                             </div>
                         </div>
