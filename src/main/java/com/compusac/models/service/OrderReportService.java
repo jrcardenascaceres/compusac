@@ -18,7 +18,7 @@ public class OrderReportService {
         try {
             String reportPath = "./";
             // Load file and Compile the Jasper report from .jrxml to .japser
-            File file = ResourceUtils.getFile("classpath:OrderReport.jrxml");
+            File file = ResourceUtils.getFile("classpath:ReporteDeOrdenes.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
             // Get your data source
@@ -33,11 +33,11 @@ public class OrderReportService {
                     dataSource);
 
             // Export the report to
-            if (reportFormat.equalsIgnoreCase("html")) {
-                JasperExportManager.exportReportToHtmlFile(jasperPrint, reportPath + "ReporteDeOrdernes.html");
+            if (reportFormat.equalsIgnoreCase("xls")) {
+                JasperExportManager.exportReportToHtmlFile(jasperPrint, reportPath + "ReporteDeOrdenes.html");
             }
             if (reportFormat.equalsIgnoreCase("pdf")) {
-                JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "ReporteDeOrdernes.pdf");
+                JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "ReporteDeOrdenes.pdf");
             }
 
             System.out.println("Done");

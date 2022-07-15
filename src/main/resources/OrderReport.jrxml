@@ -6,14 +6,14 @@
     <queryString language="SQL">
         <![CDATA[SELECT * FROM ORDERS]]>
     </queryString>
-    <field name="id" class="java.lang.Long">
-        <property name="com.jaspersoft.studio.field.name" value="id"/>
-        <property name="com.jaspersoft.studio.field.label" value="id"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
-    </field>
     <field name="numero" class="java.lang.String">
         <property name="com.jaspersoft.studio.field.name" value="numero"/>
         <property name="com.jaspersoft.studio.field.label" value="numero"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+    </field>
+    <field name="fechaCreacion" class="java.sql.Timestamp">
+        <property name="com.jaspersoft.studio.field.name" value="fechaCreacion"/>
+        <property name="com.jaspersoft.studio.field.label" value="fechaCreacion"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
     </field>
     <field name="total" class="java.lang.Double">
@@ -22,7 +22,7 @@
         <property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
     </field>
     <group name="Group1">
-        <groupExpression><![CDATA[$F{id}]]></groupExpression>
+        <groupExpression><![CDATA[$F{numero}]]></groupExpression>
         <groupHeader>
             <band height="33">
                 <staticText>
@@ -30,14 +30,14 @@
                     <textElement>
                         <font size="12"/>
                     </textElement>
-                    <text><![CDATA[id]]></text>
+                    <text><![CDATA[N° de pedido]]></text>
                 </staticText>
                 <textField>
                     <reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="61163d56-3a77-427a-9be4-c242dca7700a"/>
                     <textElement>
                         <font size="24" isBold="true"/>
                     </textElement>
-                    <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+                    <textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
                 </textField>
                 <line>
                     <reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="2679ae4c-473f-411e-8b37-2f214921a70b"/>
@@ -50,7 +50,7 @@
     </group>
 
     <group name="Group3">
-        <groupExpression><![CDATA[$F{numero}]]></groupExpression>
+        <groupExpression><![CDATA[$F{fechaCreacion}]]></groupExpression>
         <groupHeader>
             <band height="32">
                 <textField>
@@ -58,14 +58,14 @@
                     <textElement>
                         <font size="20" isBold="true"/>
                     </textElement>
-                    <textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+                    <textFieldExpression><![CDATA[$F{fechaCreacion}]]></textFieldExpression>
                 </textField>
                 <staticText>
                     <reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="1460ef8a-7b1e-448e-8e4e-c67ac8649a9e"/>
                     <textElement>
                         <font size="12"/>
                     </textElement>
-                    <text><![CDATA[numero]]></text>
+                    <text><![CDATA[Fecha de pedido]]></text>
                 </staticText>
             </band>
         </groupHeader>

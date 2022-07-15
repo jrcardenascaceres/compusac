@@ -131,8 +131,10 @@ public class UserController {
             Order order = orderService.findById(Long.parseLong(order_id));
 
             model.addAttribute("ordenesDetalle", orderDetailService.findProductDetailsByOrder(order));
+            System.out.println("Muestrame los detalles de las ordenes: " + order);
             model.addAttribute("status", true);
         } catch (Exception e) {
+        	System.out.println("Mostrando error: " + e.getMessage());
             model.addAttribute("message", e.getMessage());
         }
 
