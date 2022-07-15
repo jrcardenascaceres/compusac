@@ -182,4 +182,15 @@ public class UserController {
         model.addAttribute("categorias", categoryService.findAll());
         return "update-form-producto";
     }
+
+    @GetMapping("/delete/producto/{product_id}")
+    public String deleteProducto(@PathVariable("product_id") String product_id) {
+    	try {
+        	this.productoService.delete(Long.valueOf(product_id));
+    	} catch(Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+
+    	return "redirect:/usuario/productos";
+    }
 }
