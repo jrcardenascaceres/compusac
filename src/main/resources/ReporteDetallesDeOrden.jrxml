@@ -23,14 +23,14 @@ from order_details od, orders o2
 where o2.id = od.order_id
 ]]>
 	</queryString>
-	<field name="orden" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="numero"/>
-		<property name="com.jaspersoft.studio.field.label" value="orden"/>
+	<field name="order.numero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="order.numero"/>
+		<property name="com.jaspersoft.studio.field.label" value="order.numero"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
 	</field>
-	<field name="producto" class="java.lang.String">
+	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
-		<property name="com.jaspersoft.studio.field.label" value="producto"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_details"/>
 	</field>
 	<field name="precio" class="java.lang.Double">
@@ -38,7 +38,7 @@ where o2.id = od.order_id
 		<property name="com.jaspersoft.studio.field.label" value="precio"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_details"/>
 	</field>
-	<field name="cantidad" class="java.lang.Double">
+	<field name="cantidad" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
 		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_details"/>
@@ -52,7 +52,7 @@ where o2.id = od.order_id
 		<variableExpression><![CDATA[$F{total}]]></variableExpression>
 	</variable>
 	<group name="Group1">
-		<groupExpression><![CDATA[$F{orden}]]></groupExpression>
+		<groupExpression><![CDATA[$F{order.numero}]]></groupExpression>
 		<groupHeader>
 			<band height="31">
 				<frame>
@@ -62,7 +62,7 @@ where o2.id = od.order_id
 						<textElement>
 							<font fontName="Arial" isBold="false"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{order.numero}]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="0" y="1" width="90" height="23" forecolor="#FFFFFF" uuid="96ab6fbc-3c10-44f2-ae82-24d930fab2ea"/>
@@ -185,7 +185,7 @@ where o2.id = od.order_id
 					<textElement>
 						<font fontName="Arial" size="12" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" x="14" y="0" width="143" height="14" uuid="090efe2c-d040-4d52-b45b-57c622711484">

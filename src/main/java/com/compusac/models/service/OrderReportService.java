@@ -54,7 +54,7 @@ public class OrderReportService {
             String reportPath = "./";
 
             // Load file and Compile the Jasper report from .jrxml to .japser
-            File file = ResourceUtils.getFile("classpath:reporte.jrxml");
+            File file = ResourceUtils.getFile("classpath:ReporteDetallesDeOrden.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
             // Get your data source
