@@ -176,7 +176,7 @@ public class UserController {
         return "form-producto";
     }
 
-    @GetMapping(value = "/form-producto/{productId}")
+    @GetMapping(value = "/update/producto/{productId}")
     public String updateProduct(Model model, @PathVariable("productId") Long productId) throws ChangeSetPersister.NotFoundException {
         model.addAttribute("producto", productoService.findById(productId));
         model.addAttribute("categorias", categoryService.findAll());

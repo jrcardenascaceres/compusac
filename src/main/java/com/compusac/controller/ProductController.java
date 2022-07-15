@@ -178,7 +178,7 @@ public class ProductController {
 			return "redirect:/";
 		}
 		try {
-			String UPLOAD_DIR = "/";
+			String UPLOAD_DIR = "D:\\JRCC\\workspace\\STS\\compusac\\src\\main\\resources\\static\\img\\product\\";
 			//Subir imagen del producto
 			String banerName = StringUtils.cleanPath(baner.getOriginalFilename());
 			Path path = Paths.get(UPLOAD_DIR + banerName);
