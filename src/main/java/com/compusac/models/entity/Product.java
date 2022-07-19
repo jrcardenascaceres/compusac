@@ -25,6 +25,7 @@ public class Product {
 	private String color;
 	private String material;
 	private String banner;
+	
 
 	public Long getId() {
 		return id;

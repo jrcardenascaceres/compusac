@@ -178,6 +178,12 @@ public class UserController {
         return "form-producto";
     }
 
+    @GetMapping(value = "/save/producto")
+    public String saveProduct(Model model) throws ChangeSetPersister.NotFoundException {
+        model.addAttribute("categorias", categoryService.findAll());
+        return "save-form-producto";
+    }
+    
     @GetMapping(value = "/update/producto/{productId}")
     public String updateProduct(Model model, @PathVariable("productId") Long productId) throws ChangeSetPersister.NotFoundException {
         model.addAttribute("producto", productoService.findById(productId));

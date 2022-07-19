@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Compu S.A.C | Guardar de producto</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="/../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/../css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/../css/style.css" type="text/css">
+</head>
+<body>
+    <div th:include="./header.html::header"></div>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Productos</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Inicio</a>
+                            <span>Productos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <form th:action="@{/shop/save-product}" method="post" enctype="multipart/form-data">
+                    <legend>Registrar nuevo producto</legend>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="names" name="name" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <select  id="categoria" name="category">
+                                    <option selected>Selecione una categoria</option>
+                                	<option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.name}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tag" class="form-label">Tag</label>
+                                <input type="text" class="form-control" id="tags" name="tag">
+                            </div>
+                            <div class="mb-3 form-floating">                   
+                                <label for="floatingTextarea">Información del producto</label>
+                                <textarea class="form-control" placeholder="Información del producto" 
+                                id="product_informations" name="product_information"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mb-3">
+                                <label for="serie" class="form-label">Número de serie</label>
+                                <input type="text" class="form-control" id="number_series" name="number_serie" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="precio" class="form-label">Precio S/</label>
+                                <input type="text" class="form-control" id="prices" name="price">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tamanio" class="form-label">Tamaño</label>
+                                <input type="text" class="form-control" id="sizes" name="size">
+                            </div>
+                            <div class="mb-3">
+                                <label for="color" class="form-label">Color</label>
+                                <input type="text" class="form-control" id="colors" name="color">
+                            </div>
+                            <div class="mb-3">
+                                <label for="material" class="form-label">Material</label>
+                                <input type="text" class="form-control" id="materials" name="material">
+                            </div>
+                            <div class="mb-3">
+                                <label for="baner" class="form-label">Banner</label>
+                                <input type="file" class="form-control" id="banners" name="baner" aria-describedby="banerHelpBlock">
+                                <div id="banerHelpBlock" class="form-text" >
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer" th:include="./footer.html::footer"></div>
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="/../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+    <script src="/../js/bootstrap.min.js"></script>
+    <script src="/../js/jquery.nice-select.min.js"></script>
+    <script src="/../js/jquery.nicescroll.min.js"></script>
+    <script src="/../js/jquery.magnific-popup.min.js"></script>
+    <script src="/../js/jquery.countdown.min.js"></script>
+    <script src="/../js/jquery.slicknav.js"></script>
+    <script src="/../js/mixitup.min.js"></script>
+    <script src="/../js/owl.carousel.min.js"></script>
+    <script src="/../js/main.js"></script>
+</body>
+</html>

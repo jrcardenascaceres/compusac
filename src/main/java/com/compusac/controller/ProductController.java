@@ -6,6 +6,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -203,6 +204,39 @@ public class ProductController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "redirect:/index";
+	}
+	
+	@PostMapping("/save-product")
+	public String saveProduct(Product product,@RequestParam("baner") MultipartFile baner, RedirectAttributes attributes) {
+		
+		if (baner.isEmpty()) {
+			attributes.addFlashAttribute("message", "Please select a file to upload.");
+			return "redirect:/";
+		}
+		try {
+			String UPLOAD_DIR = "C:\\Users\\criss\\Documents\\cursos\\git_integrador\\compusac\\src\\main\\resources\\static\\img\\product\\";
+			//Subir imagen del producto
+			String banerName = StringUtils.cleanPath(baner.getOriginalFilename());
+			Path path = Paths.get(UPLOAD_DIR + banerName);
+			Files.copy(baner.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+			product.setBanner(banerName);
+			
+			Product products = productoService.create(product);
+			ProductDetail productDetail = new ProductDetail();
+			
+			productDetail.setDescription(product.getProduct_information());
+			productDetail.setImage(product.getBanner());
+			productDetail.setMain(true);
+			productDetail.setProduct(products);
+			
+			productDetailService.create(productDetail);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "redirect:/index";
 	}
 }
